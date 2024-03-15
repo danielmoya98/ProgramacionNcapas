@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDatos", "CapaDatos.csproj", "{6735D6E7-3E2C-473F-9DC6-868B68B0BE34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModeloNegocio", "ModeloNegocio\ModeloNegocio.csproj", "{6E7ED731-3EB0-49EF-84DF-1555CE065C11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaz", "Interfaz\Interfaz.csproj", "{77C38490-4A2A-49E5-BFED-5F041512338D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6735D6E7-3E2C-473F-9DC6-868B68B0BE34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6735D6E7-3E2C-473F-9DC6-868B68B0BE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6735D6E7-3E2C-473F-9DC6-868B68B0BE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6735D6E7-3E2C-473F-9DC6-868B68B0BE34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E7ED731-3EB0-49EF-84DF-1555CE065C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E7ED731-3EB0-49EF-84DF-1555CE065C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E7ED731-3EB0-49EF-84DF-1555CE065C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E7ED731-3EB0-49EF-84DF-1555CE065C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C38490-4A2A-49E5-BFED-5F041512338D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C38490-4A2A-49E5-BFED-5F041512338D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C38490-4A2A-49E5-BFED-5F041512338D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C38490-4A2A-49E5-BFED-5F041512338D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+C:\Users\Alienware\RiderProjects\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\Alienware\RiderProjects\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\Alienware\RiderProjects\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\Alienware\RiderProjects\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\Alienware\RiderProjects\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\Alienware\RiderProjects\CapaDatos\obj\Debug\CapaDatos.pdb

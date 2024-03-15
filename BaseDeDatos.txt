@@ -1,0 +1,83 @@
+﻿create database ONION_PROJECT
+GO
+
+USE ONION_PROJECT
+GO
+
+CREATE TABLE Usuarios (
+    ID INT PRIMARY KEY IDENTITY,
+    Nombre NVARCHAR(100),
+	Rol NVARCHAR(100),
+	Apellido NVARCHAR(100),
+	Telefono NVARCHAR(100),
+    Email NVARCHAR(100) UNIQUE,
+    Password NVARCHAR(100) -- Se recomienda almacenar la contraseña de forma segura, por ejemplo, hasheada
+);
+
+
+CREATE TABLE AuditoriaUsuarios (
+    IDAuditoria INT PRIMARY KEY IDENTITY,
+    Operacion NVARCHAR(50),
+    UsuarioID INT,
+    FechaOperacion DATETIME,
+    CampoAfectado NVARCHAR(100),
+    DatoAnterior NVARCHAR(100),
+    NuevoDato NVARCHAR(100)
+);
+
+
+--PROCEDIMIENTO ALMACENADO PARA INSERTAR
+CREATE PROCEDURE sp_InsertarAuditoria
+    @UsuarioID INT,
+    @CampoAfectado NVARCHAR(100),
+    @NuevoDato NVARCHAR(100)
+AS
+BEGIN
+  INSERT INTO AuditoriaUsuarios (Operacion, UsuarioID, FechaOperacion, CampoAfectado, NuevoDato)
+  VALUES ('INSERT', @UsuarioID, GETDATE(), @CampoAfectado, @NuevoDato);
+END;
+
+--PROCEDIMIENTO ALMACENADO PARA LEER
+CREATE PROCEDURE sp_LeerAuditoria
+    @UsuarioID INT
+AS
+BEGIN
+    INSERT INTO AuditoriaUsuarios (Operacion, UsuarioID, FechaOperacion)
+    VALUES ('READ', @UsuarioID, GETDATE());
+END;
+
+--PROCEDIMIENTO ALMACENADO PARA EDITAR
+CREATE PROCEDURE sp_ActualizarAuditoria
+    @UsuarioID INT,
+    @CampoAfectado NVARCHAR(100),
+    @DatoAnterior NVARCHAR(100),
+    @NuevoDato NVARCHAR(100)
+AS
+BEGIN
+   INSERT INTO AuditoriaUsuarios (Operacion, UsuarioID, FechaOperacion, CampoAfectado, NuevoDato ,DatoAnterior)
+    VALUES ('UPDATE', @UsuarioID, GETDATE(), @CampoAfectado, @NuevoDato, @DatoAnterior);
+END;
+
+--PROCEDIMIENTO ALMACENADO PARA ELIMINAR
+
+CREATE PROCEDURE sp_EliminarAuditoria
+    @UsuarioID INT,
+	@CampoAfectado NVARCHAR(100),
+	@DatoAnterior NVARCHAR(100)
+AS
+BEGIN
+    INSERT INTO AuditoriaUsuarios (Operacion, UsuarioID, FechaOperacion,CampoAfectado , DatoAnterior)
+    VALUES ('DELETE', @UsuarioID, GETDATE(), @CampoAfectado ,@DatoAnterior);
+END;
+
+-- PRUEBAS 
+exec sp_InsertarAuditoria 1,'Password','123'
+
+exec sp_ActualizarAuditoria 1 ,'Nombre','Daniel', 'Daniela'
+
+exec sp_LeerAuditoria 1 
+
+exec sp_EliminarAuditoria 1 ,'Apellido','Apaza'
+
+select * from AuditoriaUsuarios
+

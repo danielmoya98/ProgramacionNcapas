@@ -1,0 +1,9 @@
+C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\bin\Debug\ModeloNegocio.dll
+C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\bin\Debug\ModeloNegocio.pdb
+C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\bin\Debug\CapaDatos.dll
+C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\obj\Debug\ModeloNegocio.csproj.AssemblyReference.cache
+C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\obj\Debug\ModeloNegocio.csproj.CoreCompileInputs.cache
+C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\obj\Debug\ModeloNe.7CCD3FB9.Up2Date
+C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\obj\Debug\ModeloNegocio.dll
+C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\obj\Debug\ModeloNegocio.pdb
