@@ -39,12 +39,12 @@
 
                     <StackPanel>
                         <TextBlock Text="Nombre usuario" Style="{StaticResource textLabel}" />
-                        <TextBox Margin="0 5 5 10" Text="" MaxLength="50"/>
+                        <TextBox x:Name="txtnameUser" Margin="0 5 5 10" Text="" MaxLength="50"/>
                     </StackPanel>
 
                     <StackPanel Grid.Row="0" Grid.Column="1">
                         <TextBlock Text="Contraseña" Style="{StaticResource textLabel}" />
-                        <TextBox Margin="0 5 5 10" Text="" MaxLength="50"/>
+                        <TextBox x:Name="txtpass" Margin="0 5 5 10" Text="" MaxLength="50"/>
                     </StackPanel>
                     <TextBlock Text="Información personal" 
                                Foreground="#fcfcfc" 
@@ -53,29 +53,37 @@
                                FontWeight="SemiBold"
                                Grid.Column="0" 
                                Grid.Row="1"
-                               Grid.ColumnSpan="2"/>
+                               />
+                    <StackPanel Grid.Row="1" Grid.Column="2">
+                        <TextBlock Text="Nombres" Style="{StaticResource textLabel}" />
+                        <ComboBox Background="Transparent" FontSize="8" Margin="0 5 5 10"  HorizontalAlignment="Left" Name="cmbRol" Height="46" Width="536">
+                            <ComboBoxItem>Admin</ComboBoxItem>
+                            <ComboBoxItem>trabajador 1</ComboBoxItem>
+                            <ComboBoxItem>trabajador 2</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
                     <StackPanel Grid.Column="0" Grid.Row="2">
                         <TextBlock Text="Nombres" Style="{StaticResource textLabel}" />
-                        <TextBox Margin="0 5 5 10" Text="" MaxLength="50"/>
+                        <TextBox x:Name="txtname" Margin="0 5 5 10" Text="" MaxLength="50"/>
                     </StackPanel>
                     
                     <StackPanel Grid.Column="1" Grid.Row="2">
                         <TextBlock Text="Apellidos" Style="{StaticResource textLabel}" />
-                        <TextBox Margin="0 5 5 10" Text="" MaxLength="50"/>
+                        <TextBox x:Name="txtape" Margin="0 5 5 10" Text="" MaxLength="50"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="0" Grid.Row="3">
                         <TextBlock Text="Correo" Style="{StaticResource textLabel}" />
-                        <TextBox Margin="0 5 5 10" Text="" MaxLength="50"/>
+                        <TextBox x:Name="txtemail" Margin="0 5 5 10" Text="" MaxLength="50"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="3">
                         <TextBlock Text="Telefono" Style="{StaticResource textLabel}" />
-                        <TextBox Margin="0 5 5 10" Text="" MaxLength="50"/>
+                        <TextBox x:Name="txttelefono" Margin="0 5 5 10" Text="" MaxLength="50"/>
                     </StackPanel>
                 </Grid>
 
-                <Button Style="{StaticResource sendButton}" Margin="250 15 250 0">
+                <Button x:Name="Guardar" Style="{StaticResource sendButton}" Margin="250 15 250 0" Click="Guardar_Click">
                     <StackPanel Orientation="Horizontal">
                         <fa:ImageAwesome Icon="Save" Style="{StaticResource whiteIcon}" Grid.Row="3" VerticalAlignment="Center" />
                         <TextBlock Text="Guardar" Margin="10 0 0 0" FontWeight="SemiBold"/>
@@ -100,17 +108,17 @@
             <Grid>
                 <Ellipse Width="125" Height="125">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="\Resources\Imagenes\imgpru.jpg" Stretch="UniformToFill"/>
+                        <ImageBrush x:Name="imgBrush" ImageSource="\Resources\Imagenes\imgpru.jpg" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </Grid>
         </Border>
 
-        <Button Style="{StaticResource topMenuButtonEdit}"
+        <Button x:Name="agrgarfoto" Style="{StaticResource topMenuButtonEdit}"
                 Width="60"
                 Height="60"
                 Margin="100 150 0 0"
-                VerticalAlignment="Top">
+                VerticalAlignment="Top" Click="agrgarfoto_Click">
             <StackPanel Orientation="Horizontal">
                 <fa:ImageAwesome Icon="Save" Style="{StaticResource whiteIcon}" Grid.Row="3" VerticalAlignment="Center" />
             </StackPanel>

@@ -16,3 +16,12 @@ C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNego
 C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNe.7CCD3FB9.Up2Date
 C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNegocio.dll
 C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNegocio.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNegocio.csproj.AssemblyReference.cache
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNegocio.csproj.CoreCompileInputs.cache
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNegocio.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNegocio.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\ModeloNegocio\bin\Debug\ModeloNegocio.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\ModeloNegocio\bin\Debug\ModeloNegocio.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\ModeloNegocio\bin\Debug\CapaDatos.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\ModeloNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNe.7CCD3FB9.Up2Date

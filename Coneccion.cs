@@ -9,7 +9,7 @@ namespace CapaDatos
 
         private Coneccion()
         {
-            cadenaDeConeccion = "Server=DESKTOP-MVM9JOF;Database=ONION_PROJECT;Integrated Security=true; TrustServerCertificate=True";
+            cadenaDeConeccion = "Server=(LocalDB)\\MSSQLLocalDB;Database=ONION_PROJECT;Integrated Security=true; TrustServerCertificate=True";
         }
 
         public static Coneccion Instance

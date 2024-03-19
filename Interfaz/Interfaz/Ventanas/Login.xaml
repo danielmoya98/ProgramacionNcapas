@@ -49,7 +49,7 @@
                         <TextBlock Text="Login Usuario" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Great Vibes"></TextBlock>
                         <TextBlock Text="Nombre usuario" Style="{StaticResource textLabel}" />
                         <StackPanel Orientation="Horizontal" Margin="10">
-                            <TextBox x:Name="txtEmail" 
+                            <TextBox x:Name="txtUsername" 
                              Margin="10 0" 
                              Foreground="White" Width="250" 
                              BorderBrush="White" 

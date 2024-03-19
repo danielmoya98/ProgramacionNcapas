@@ -2,192 +2,424 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics.Eventing.Reader;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+using System.Windows;
 using CapaDatos;
+
 
 namespace ModeloNegocio
 {
     public class Controller
     {
         private static readonly Coneccion conexion = Coneccion.Instance;
-        
-        public static List<Usuarios> ObtenerTodosLosUsuarios()
-        {
-            List<CapaDatos.Usuarios> listaUsuarios = new List<CapaDatos.Usuarios>();
 
-            try
-            {
-                using (var conn = conexion.GetConnection())
-                {
-                    conn.Open();
-                    // Aquí deberías ejecutar tu consulta SQL para obtener todos los usuarios de la base de datos
-                    // Por ejemplo:
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios", conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    // Recorrer los resultados y agregar cada usuario a la lista
-                    while (reader.Read())
-                    {
-                        Usuarios usuario = new Usuarios
-                        {
-                            ID = Convert.ToInt32(reader["ID"]),
-                            Nombre = reader["Nombre"].ToString(),
-                            Rol = reader["Rol"].ToString(),
-                            Apellido = reader["Apellido"].ToString(),
-                            Telefono = reader["Telefono"].ToString(),
-                            Email = reader["Email"].ToString(),
-                            Password = reader["Password"].ToString()
-                        };
-                        listaUsuarios.Add(usuario);
-                    }
-
-                    reader.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al obtener usuarios: {ex.Message}");
-            }
-
-            return listaUsuarios;
-        }
-
-        public string IniciarSesion(string email, string contraseña)
+        public string IniciarSesion(string nombreusuario, string contraseña)
         {
             try
             {
-                using (var conn = conexion.GetConnection())
+                using (SqlConnection conn = conexion.GetConnection())
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE Email = @Email AND Password = @Contraseña", conn);
-                    cmd.Parameters.AddWithValue("@Email", email);
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE NombreUsuario = @NombreUsuario AND Password = @Contraseña", conn);
+                    cmd.Parameters.AddWithValue("@NombreUsuario", nombreusuario);
                     cmd.Parameters.AddWithValue("@Contraseña", contraseña);
-            
-                    int count = (int)cmd.ExecuteScalar();
 
-                    if (count > 0)
+                    int cantidadUsuarios = (int)cmd.ExecuteScalar();
+
+                    if (cantidadUsuarios > 0)
                     {
-                        // Si se encuentra al menos un usuario con el correo electrónico y la contraseña proporcionados
+                        // Si se encuentra al menos un usuario con el nombre de usuario y la contraseña proporcionados
                         return "Sesión iniciada correctamente";
                     }
                     else
                     {
-                        // Si no se encuentra ningún usuario con el correo electrónico y la contraseña proporcionados
-                        return "Correo electrónico o contraseña incorrectos";
+                        // Si no se encuentra ningún usuario con el nombre de usuario y la contraseña proporcionados
+                        return "Nombre de usuario o contraseña incorrectos";
                     }
                 }
             }
             catch (Exception ex)
             {
+                // Registra la excepción para propósitos de depuración
                 Console.WriteLine($"Error al iniciar sesión: {ex.Message}");
-                return "Error al iniciar sesión";
+                // Devuelve un mensaje de error genérico al usuario
+                return "Error al iniciar sesión. Por favor, inténtelo de nuevo más tarde.";
             }
         }
-
-        public void InsertarAuditoria(int usuarioID, string campoAfectado, string nuevoDato)
+        public void CrearUsuario(Usuarios usuario)
         {
             try
             {
-                using (var conn = conexion.GetConnection())
+                byte[] fotoBytes = ObtenerBytesDesdeImagen(fotoBytesGlobal);
+                using (SqlConnection conn = conexion.GetConnection())
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("sp_InsertarAuditoria", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (Nombre, Apellido, Rol, Telefono, Email, Foto,Estado, NombreUsuario, Password) VALUES (@Nombre, @Apellido, @Rol, @Telefono, @Email, @Foto,@Estado, @NombreUsuario, @Password); SELECT SCOPE_IDENTITY();", conn);
+                    cmd.Parameters.AddWithValue("@Email", usuario.Email);
+                    cmd.Parameters.AddWithValue("@Password", usuario.Password); // Asegúrate de cifrar esta contraseña en un entorno real
+                    cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
+                    cmd.Parameters.AddWithValue("@Apellido", usuario.Apellido);
+                    cmd.Parameters.AddWithValue("@Rol", usuario.Rol);
+                    cmd.Parameters.AddWithValue("@Telefono", usuario.Telefono);
+                    cmd.Parameters.AddWithValue("@Foto", fotoBytes);
+                    cmd.Parameters.AddWithValue("@Estado", 1);
+                    cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
+                    int newUserID = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    // Agregar parámetros al procedimiento almacenado
-                    cmd.Parameters.AddWithValue("@UsuarioID", usuarioID);
-                    cmd.Parameters.AddWithValue("@CampoAfectado", campoAfectado);
-                    cmd.Parameters.AddWithValue("@NuevoDato", nuevoDato);
+                    if (newUserID > 0)
+                    {
+                        // Usuario creado correctamente
+                        Console.WriteLine("Usuario creado correctamente");
 
-                    // Ejecutar el procedimiento almacenado
-                    cmd.ExecuteNonQuery();
-            
-                    Console.WriteLine("Auditoría insertada correctamente.");
+                        // Obtener todos los datos del usuario para el registro de auditoría
+                        string nuevoDato = $"Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, Rol: {usuario.Rol}, Telefono: {usuario.Telefono}, Email: {usuario.Email},Estado: {usuario.Estado}, NombreUsuario: {usuario.NombreUsuario}";
+
+                        // Llamada al procedimiento almacenado de auditoría
+                        SqlCommand cmdAuditoria = new SqlCommand("sp_InsertarAuditoria", conn);
+                        cmdAuditoria.CommandType = CommandType.StoredProcedure;
+                        cmdAuditoria.Parameters.AddWithValue("@UsuarioID", newUserID);
+                        cmdAuditoria.Parameters.AddWithValue("@CampoAfectado", "Nuevo usuario creado");
+                        cmdAuditoria.Parameters.AddWithValue("@NuevoDato", nuevoDato);
+                        cmdAuditoria.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se pudo crear el usuario");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al insertar auditoría: {ex.Message}");
+                Console.WriteLine($"Error al crear usuario: {ex.Message}");
+                throw;
+            }
+        }
+        private string CalcularHash(string contraseña)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // Convertir la contraseña en un array de bytes
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
+
+                // Convertir el array de bytes en una cadena hexadecimal
+                System.Text.StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+        public static byte[] fotoBytesGlobal { get; set; }
+        public static byte[] ObtenerBytesDesdeArchivo(string filePath)
+        {
+            try
+            {
+                return File.ReadAllBytes(filePath);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"Error de entrada/salida al leer el archivo: {ex.Message}");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show($"No se tiene acceso al archivo: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al leer el archivo: {ex.Message}");
+            }
+
+            return null;
+        }
+        private byte[] ObtenerBytesDesdeImagen(byte[] fotoBytesGlobal)
+        {
+            // Supongamos que la imagen ya está en formato de bytes
+            return fotoBytesGlobal;
+        }
+        //editar users
+        public void ActualizarUsuario(Usuarios usuario)
+        {
+            try
+            {
+                // Obtener el usuario anterior para obtener el dato anterior
+                Usuarios usuarioAnterior = ObtenerUsuarioPorApellido(usuario.Apellido);
+
+                // Una vez validado, puedes proceder a actualizar el usuario en la base de datos
+                using (SqlConnection conn = CapaDatos.Coneccion.Instance.GetConnection())
+                {
+                    conn.Open();
+
+                    // Actualizar el usuario en la base de datos
+                    SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET Nombre = @Nombre, Rol = @Rol, Telefono = @Telefono, Email = @Email, Foto = @Foto,Estado = @Estado, NombreUsuario = @NombreUsuario, Password = @Password WHERE Apellido = @Apellido", conn);
+                    cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
+                    cmd.Parameters.AddWithValue("@Apellido", usuario.Apellido);
+                    cmd.Parameters.AddWithValue("@Rol", usuario.Rol);
+                    cmd.Parameters.AddWithValue("@Telefono", usuario.Telefono);
+                    cmd.Parameters.AddWithValue("@Email", usuario.Email);
+                    cmd.Parameters.AddWithValue("@Foto", usuario.Foto);
+                    cmd.Parameters.AddWithValue("@Estado", usuario.Estado);
+                    cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
+                    cmd.Parameters.AddWithValue("@Password", usuario.Password);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        Console.WriteLine("Usuario actualizado correctamente.");
+
+                        // Llamar al procedimiento almacenado de auditoría
+                        SqlCommand cmdAuditoria = new SqlCommand("sp_ActualizarAuditoria", conn);
+                        cmdAuditoria.CommandType = CommandType.StoredProcedure;
+                        cmdAuditoria.Parameters.AddWithValue("@UsuarioID", usuarioAnterior.Id); // Usamos el ID del usuario encontrado por apellido
+                        cmdAuditoria.Parameters.AddWithValue("@CampoAfectado", "Usuario actualizado");
+                        cmdAuditoria.Parameters.AddWithValue("@DatoAnterior", ObtenerDatoAnterior(usuarioAnterior)); // Obtener el dato anterior
+                        cmdAuditoria.Parameters.AddWithValue("@NuevoDato", ObtenerNuevoDato(usuario)); // Obtener el nuevo dato
+                        cmdAuditoria.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se pudo actualizar el usuario.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar usuario: {ex.Message}");
+
             }
         }
 
-        public List<Auditoria_Usuarios> LeerAuditoria(int usuarioID)
+        // Método para obtener un usuario por su apellido
+        private Usuarios ObtenerUsuarioPorApellido(string apellido)
         {
-            List<Auditoria_Usuarios> auditoria = new List<Auditoria_Usuarios>();
-
+            Usuarios usuarioEncontrado = null;
             try
             {
-                using (var conn = conexion.GetConnection())
+                // Crear la conexión a la base de datos
+                using (SqlConnection conn = CapaDatos.Coneccion.Instance.GetConnection())
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("sp_LeerAuditoria", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlCommand cmd = new SqlCommand("SELECT TOP 1 * FROM Usuarios WHERE Apellido = @Apellido ORDER BY Id DESC", conn);
+                    cmd.Parameters.AddWithValue("@Apellido", apellido);
 
-                    // Agregar parámetro de entrada al procedimiento almacenado
-                    cmd.Parameters.AddWithValue("@UsuarioID", usuarioID);
-
+                    // Ejecutar la consulta SQL y leer el resultado
                     SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        Auditoria_Usuarios registroAuditoria = new Auditoria_Usuarios()
+                        // Por cada usuario encontrado, crear un objeto Usuarios y asignar los valores
+                        usuarioEncontrado = new Usuarios
                         {
-                            IDAuditoria = Convert.ToInt32(reader["IDAuditoria"]),
-                            Operacion = reader["Operacion"].ToString(),
-                            UsuarioID = Convert.ToInt32(reader["UsuarioID"]),
-                            FechaOperacion = Convert.ToDateTime(reader["FechaOperacion"]),
-                            CampoAfectado = reader["CampoAfectado"].ToString(),
-                            DatoAnterior = reader["DatoAnterior"].ToString(),
-                            NuevoDato = reader["NuevoDato"].ToString()
+                            // Asignar los valores de las columnas de la tabla Usuarios a las propiedades del objeto usuario
+                            //Id = (int)reader["Id"],
+                            Nombre = (string)reader["Nombre"],
+                            Apellido = (string)reader["Apellido"],
+                            Rol = (string)reader["Rol"],
+                            Telefono = (string)reader["Telefono"],
+                            Email = (string)reader["Email"],
+                            NombreUsuario = (string)reader["NombreUsuario"],
+                            Password = (string)reader["Password"],
+                            // Recuperar la foto del usuario como un arreglo de bytes
+                            Foto = reader["Foto"] != DBNull.Value ? (byte[])reader["Foto"] : null
                         };
 
-                        auditoria.Add(registroAuditoria);
+                        // Una vez que encontramos el usuario anterior, podemos llamar a ObtenerDatoAnterior
+                        string datoAnterior = ObtenerDatoAnterior(usuarioEncontrado);
+                        Console.WriteLine($"Datos anteriores:\n{datoAnterior}");
                     }
-
+                    // Cerrar el lector
                     reader.Close();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al leer auditoría: {ex.Message}");
+                // Manejar la excepción
+                Console.WriteLine($"Error al buscar usuario por apellido: {ex.Message}");
+                // Puedes lanzar una excepción aquí si lo deseas
+                // throw new Exception("Error al buscar usuario por apellido", ex);
             }
-
-            return auditoria;
+            return usuarioEncontrado;
         }
 
-        public void ActualizarAuditoria(int idAuditoria, string campoAfectado, string datoAnterior, string nuevoDato)
+        private string ObtenerDatoAnterior(Usuarios usuario)
         {
+            if (usuario == null)
+            {
+                // Si no hay usuario anterior, retorna una cadena vacía
+                return "";
+            }
+
+            StringBuilder datoAnterior = new StringBuilder();
+            // Compara las propiedades del usuario con los datos actuales
+            datoAnterior.AppendLine($"Nombre anterior: {usuario.Nombre}");
+            datoAnterior.AppendLine($"Apellido anterior: {usuario.Apellido}");
+            datoAnterior.AppendLine($"Rol anterior: {usuario.Rol}");
+            datoAnterior.AppendLine($"Teléfono anterior: {usuario.Telefono}");
+            datoAnterior.AppendLine($"Email anterior: {usuario.Email}");
+            datoAnterior.AppendLine($"Nombre de usuario anterior: {usuario.NombreUsuario}");
+
+            // En este punto, puedes agregar la lógica para comparar más propiedades según tus necesidades.
+
+            return datoAnterior.ToString();
+        }
+        private string ObtenerNuevoDato(Usuarios usuario)
+        {
+            if (usuario == null)
+            {
+                // Si no hay usuario proporcionado, retorna una cadena vacía
+                return "";
+            }
+
+            StringBuilder nuevoDato = new StringBuilder();
+            // Concatena los valores de las propiedades del usuario actualizado
+            nuevoDato.AppendLine($"Nombre: {usuario.Nombre}");
+            nuevoDato.AppendLine($"Apellido: {usuario.Apellido}");
+            nuevoDato.AppendLine($"Rol: {usuario.Rol}");
+            nuevoDato.AppendLine($"Teléfono: {usuario.Telefono}");
+            nuevoDato.AppendLine($"Email: {usuario.Email}");
+            nuevoDato.AppendLine($"Nombre de usuario: {usuario.NombreUsuario}");
+
+            // En este punto, puedes agregar la lógica para incluir más propiedades según tus necesidades.
+
+            return nuevoDato.ToString();
+        }
+
+
+
+
+
+        public Usuarios BuscarUsuarioPorApellido(string apellido)
+        {
+            Usuarios usuario = null;
             try
             {
-                using (var conn = conexion.GetConnection())
+                // Crear la conexión a la base de datos
+                using (SqlConnection conn = CapaDatos.Coneccion.Instance.GetConnection())
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("sp_ActualizarAuditoria", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios WHERE Apellido = @Apellido", conn);
+                    cmd.Parameters.AddWithValue("@Apellido", apellido);
 
-                    // Agregar parámetros al procedimiento almacenado
-                    cmd.Parameters.AddWithValue("@IDAuditoria", idAuditoria);
-                    cmd.Parameters.AddWithValue("@CampoAfectado", campoAfectado);
-                    cmd.Parameters.AddWithValue("@DatoAnterior", datoAnterior);
-                    cmd.Parameters.AddWithValue("@NuevoDato", nuevoDato);
-
-                    // Ejecutar el procedimiento almacenado
-                    cmd.ExecuteNonQuery();
-
-                    Console.WriteLine("Auditoría actualizada correctamente.");
+                    // Ejecutar la consulta SQL y leer el resultado
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        // Si se encuentra un usuario con el apellido proporcionado, crear un objeto Usuarios y asignar los valores
+                        usuario = new Usuarios
+                        {
+                            Nombre = (string)reader["Nombre"],
+                            Apellido = (string)reader["Apellido"],
+                            Rol = (string)reader["Rol"],
+                            Telefono = (string)reader["Telefono"],
+                            Email = (string)reader["Email"],
+                            // Asigna otros campos si es necesario
+                        };
+                    }
+                    // Cerrar el lector
+                    reader.Close();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al actualizar auditoría: {ex.Message}");
+                // Manejar la excepción
+                Console.WriteLine($"Error al buscar usuario por apellido: {ex.Message}");
+                // Puedes lanzar una excepción aquí si lo deseas
+                // throw new Exception("Error al buscar usuario por apellido", ex);
             }
+            return usuario;
         }
+        public List<Usuarios> BuscarUsuarioPorApellidos(string apellido)
+        {
+            List<Usuarios> usuariosEncontrados = new List<Usuarios>();
+            try
+            {
+                // Crear la conexión a la base de datos
+                using (SqlConnection conn = CapaDatos.Coneccion.Instance.GetConnection())
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios WHERE Apellido = @Apellido", conn);
+                    cmd.Parameters.AddWithValue("@Apellido", apellido);
 
-        public void RegistrarEliminacionAuditoria(int usuarioID, string campoAfectado, string datoAnterior)
+                    // Ejecutar la consulta SQL y leer el resultado
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        // Por cada usuario encontrado, crear un objeto Usuarios y asignar los valores
+                        Usuarios usuario = new Usuarios
+                        {
+                            // Asignar los valores de las columnas de la tabla Usuarios a las propiedades del objeto usuario
+                            //Id = (int)reader["Id"],
+                            Nombre = (string)reader["Nombre"],
+                            Apellido = (string)reader["Apellido"],
+                            Rol = (string)reader["Rol"],
+                            Telefono = (string)reader["Telefono"],
+                            Email = (string)reader["Email"],
+                            NombreUsuario = (string)reader["NombreUsuario"],
+                            Password = (string)reader["Password"],
+                            // Recuperar la foto del usuario como un arreglo de bytes
+
+                            Foto = reader["Foto"] != DBNull.Value ? (byte[])reader["Foto"] : null
+                        };
+                        // Agregar el usuario a la lista de usuarios encontrados
+                        usuariosEncontrados.Add(usuario);
+                    }
+                    // Cerrar el lector
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción
+                Console.WriteLine($"Error al buscar usuarios por apellido: {ex.Message}");
+                // Puedes lanzar una excepción aquí si lo deseas
+                // throw new Exception("Error al buscar usuarios por apellido", ex);
+            }
+            return usuariosEncontrados;
+        }
+        //eliminarrrr
+        public void EliminarUsuario(int usuarioID)
         {
             try
             {
-                using (var conn = conexion.GetConnection())
+                string datoAnterior = ObtenerDatoAnterior(usuarioID); // Obtener los datos del usuario antes de eliminarlo
+
+                // Crear la conexión a la base de datos
+                using (SqlConnection conn = CapaDatos.Coneccion.Instance.GetConnection())
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("DELETE FROM Usuarios WHERE Id = @UsuarioID", conn);
+                    cmd.Parameters.AddWithValue("@UsuarioID", usuarioID);
+
+                    // Ejecutar la consulta SQL
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    // Verificar si se eliminó correctamente al menos una fila
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Usuario eliminado correctamente.");
+                        // Realizar la auditoría
+                        RealizarAuditoriaEliminacion(usuarioID, "Usuario eliminado", datoAnterior);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se encontró ningún usuario con el ID proporcionado.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción
+                Console.WriteLine($"Error al eliminar usuario: {ex.Message}");
+            }
+        }
+
+        private void RealizarAuditoriaEliminacion(int usuarioID, string campoAfectado, string datoAnterior)
+        {
+            try
+            {
+                // Crear la conexión a la base de datos
+                using (SqlConnection conn = CapaDatos.Coneccion.Instance.GetConnection())
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("sp_EliminarAuditoria", conn);
@@ -200,84 +432,97 @@ namespace ModeloNegocio
 
                     // Ejecutar el procedimiento almacenado
                     cmd.ExecuteNonQuery();
-
-                    Console.WriteLine("Registro de eliminación de auditoría insertado correctamente.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al registrar eliminación de auditoría: {ex.Message}");
+                // Manejar la excepción
+                Console.WriteLine($"Error al realizar la auditoría de eliminación: {ex.Message}");
             }
         }
 
-        public void CrearUsuario(Usuarios usuario)
+        private string ObtenerDatoAnterior(int usuarioID)
         {
             try
             {
-                using (var conn = conexion.GetConnection())
+                string datoAnterior = "";
+
+                // Crear la conexión a la base de datos
+                using (SqlConnection conn = CapaDatos.Coneccion.Instance.GetConnection())
                 {
                     conn.Open();
-                    string query = "INSERT INTO Usuarios (Nombre, Rol, Apellido, Telefono, Email, Password) " +
-                                   "VALUES (@Nombre, @Rol, @Apellido, @Telefono, @Email, @Password);";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
-                    cmd.Parameters.AddWithValue("@Rol", usuario.Rol);
-                    cmd.Parameters.AddWithValue("@Apellido", usuario.Apellido);
-                    cmd.Parameters.AddWithValue("@Telefono", usuario.Telefono);
-                    cmd.Parameters.AddWithValue("@Email", usuario.Email);
-                    cmd.Parameters.AddWithValue("@Password", usuario.Password);
-                    cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand("SELECT Nombre, Apellido, Rol, Telefono, Email, NombreUsuario FROM Usuarios WHERE Id = @UsuarioID", conn);
+                    cmd.Parameters.AddWithValue("@UsuarioID", usuarioID);
+
+                    // Ejecutar la consulta SQL y leer el resultado
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        // Construir la cadena de texto con los datos del usuario
+                        datoAnterior = $"Nombre: {reader["Nombre"]}, Apellido: {reader["Apellido"]}, Rol: {reader["Rol"]}, Telefono: {reader["Telefono"]}, Email: {reader["Email"]}, Nombre de usuario: {reader["NombreUsuario"]}";
+                    }
+                    // Cerrar el lector
+                    reader.Close();
                 }
+
+                return datoAnterior;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al crear usuario: {ex.Message}");
+                // Manejar la excepción
+                Console.WriteLine($"Error al obtener los datos del usuario anterior: {ex.Message}");
+                // En caso de error, devuelve una cadena vacía
+                return "";
             }
         }
-        
-        public void ActualizarUsuario(Usuarios usuario)
+
+
+        //lista
+        public static List<Usuarios> ObtenerTodosLosUsuarios()
         {
+            List<Usuarios> usuarios = new List<Usuarios>();
+
             try
             {
-                using (var conn = conexion.GetConnection())
+                // Crear la conexión a la base de datos
+                using (SqlConnection conn = CapaDatos.Coneccion.Instance.GetConnection())
                 {
                     conn.Open();
-                    string query = "UPDATE Usuarios SET Nombre = @Nombre, Rol = @Rol, Apellido = @Apellido, " +
-                                   "Telefono = @Telefono, Email = @Email, Password = @Password WHERE ID = @ID;";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
-                    cmd.Parameters.AddWithValue("@Rol", usuario.Rol);
-                    cmd.Parameters.AddWithValue("@Apellido", usuario.Apellido);
-                    cmd.Parameters.AddWithValue("@Telefono", usuario.Telefono);
-                    cmd.Parameters.AddWithValue("@Email", usuario.Email);
-                    cmd.Parameters.AddWithValue("@Password", usuario.Password);
-                    cmd.Parameters.AddWithValue("@ID", usuario.ID);
-                    cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios", conn);
+
+                    // Ejecutar la consulta SQL y leer los resultados
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        // Por cada usuario encontrado, crear un objeto Usuarios y asignar los valores
+                        Usuarios usuario = new Usuarios
+                        {
+                            //Id = (int)reader["Id"],
+                            Nombre = (string)reader["Nombre"],
+                            Apellido = (string)reader["Apellido"],
+                            Rol = (string)reader["Rol"],
+                            Telefono = (string)reader["Telefono"],
+                            Email = (string)reader["Email"],
+                            NombreUsuario = (string)reader["NombreUsuario"],
+                            Password = (string)reader["Password"],
+                            // Si hay más campos en tu tabla Usuarios, asegúrate de asignarlos aquí
+                        };
+
+                        // Agregar el usuario a la lista de usuarios
+                        usuarios.Add(usuario);
+                    }
+
+                    // Cerrar el lector
+                    reader.Close();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al actualizar usuario: {ex.Message}");
+                // Manejar la excepción
+                Console.WriteLine($"Error al obtener todos los usuarios: {ex.Message}");
             }
-        }
-        
-        public void EliminarUsuario(int usuarioID)
-        {
-            try
-            {
-                using (var conn = conexion.GetConnection())
-                {
-                    conn.Open();
-                    string query = "DELETE FROM Usuarios WHERE ID = @ID;";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@ID", usuarioID);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al eliminar usuario: {ex.Message}");
-            }
+
+            return usuarios;
         }
     }
 }

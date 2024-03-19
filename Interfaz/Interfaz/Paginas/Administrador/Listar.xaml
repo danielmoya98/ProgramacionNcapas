@@ -34,13 +34,13 @@
         <!--Security Card-->
         <Border Style="{StaticResource border}" Margin="20 0 20 0">
             <Grid Margin="15 10">
-                <DataGrid x:Name="DataGridHistorial" 
+                <DataGrid x:Name="datagridUsuarios" ItemsSource="{Binding Usuarios}"
                           Height="500"
                           IsReadOnly="True"
                           AutoGenerateColumns="False"
                           Margin="10" Background="#473765" BorderBrush="Transparent">
                     <DataGrid.Columns >
-                        <DataGridTextColumn Header="ID"
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}"
                             MinWidth="125"
                             Width="*">
                             <DataGridTextColumn.HeaderStyle>
@@ -51,7 +51,7 @@
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Nombre Usuario"
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}"
                             MinWidth="125"
                             Width="*">
                             <DataGridTextColumn.HeaderStyle>
@@ -62,7 +62,16 @@
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Rol"
+                        <DataGridTextColumn Header="Apellido" Binding="{Binding Apellido}" MinWidth="125" Width="*">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="#ff200E3A" />
+                                    <Setter Property="FontSize" Value="20" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Rol" Binding="{Binding Rol}"
                             MinWidth="125"
                             Width="*">
                             <DataGridTextColumn.HeaderStyle>
@@ -73,7 +82,7 @@
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Nombres"
+                        <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}"
                             MinWidth="125"
                             Width="*">
                             <DataGridTextColumn.HeaderStyle>
@@ -84,7 +93,7 @@
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Apellidos"
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}"
                             MinWidth="125"
                             Width="*">
                             <DataGridTextColumn.HeaderStyle>
@@ -95,14 +104,13 @@
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Telefono"
+                        <DataGridTextColumn Header="Nombre Usuario" Binding="{Binding NombreUsuario}"
                             MinWidth="125"
                             Width="*">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Foreground" Value="White" />
-                                    <Setter Property="Background" Value="#ff200E3A" />
-                                    
+                                    <Setter Property="Background" Value="#ff200E3A" />                                    
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                         </DataGridTextColumn>

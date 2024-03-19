@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModeloNegocio;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,22 @@ namespace Wallet_Payment.Interfaces.Paginas.Administrador
         public Listar()
         {
             InitializeComponent();
+            CargarUsuarios();
+        }
+        private void CargarUsuarios()
+        {
+            try
+            {
+                // Obtener todos los usuarios llamando al método estático del controlador
+                var usuarios = Controller.ObtenerTodosLosUsuarios();
+
+                // Asignar la lista de usuarios al DataGrid
+                datagridUsuarios.ItemsSource = usuarios;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar usuarios: {ex.Message}");
+            }
         }
     }
 }

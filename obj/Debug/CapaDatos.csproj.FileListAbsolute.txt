@@ -10,3 +10,9 @@ C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\obj\Debug\
 C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
 C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\obj\Debug\CapaDatos.dll
 C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\obj\Debug\CapaDatos.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\bin\Debug\CapaDatos.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\bin\Debug\CapaDatos.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\obj\Debug\CapaDatos.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\obj\Debug\CapaDatos.pdb

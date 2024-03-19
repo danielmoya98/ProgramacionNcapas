@@ -15,9 +15,9 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <Button Style="{StaticResource topMenuButtonEdit}" Panel.ZIndex="9999"
+        <Button x:Name="btnCargarFoto" Style="{StaticResource topMenuButtonEdit}" Panel.ZIndex="9999"
         Width="60"
-        Height="60" Margin="25,91,320,120">
+        Height="60" Margin="25,91,320,120" Click="btnCargarFoto_Click">
             <StackPanel Orientation="Horizontal">
                 <fa:ImageAwesome Icon="Save" Style="{StaticResource whiteIcon}" VerticalAlignment="Center" />
             </StackPanel>
@@ -64,7 +64,7 @@
                                 <Grid>
                                     <Ellipse Width="125" Height="125">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="\Resources\Imagenes\imgpru.jpg" Stretch="UniformToFill"/>
+                                            <ImageBrush x:Name="imgBrush" ImageSource="\Resources\Imagenes\imgpru.jpg" Stretch="UniformToFill"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                 </Grid>
@@ -82,17 +82,21 @@
                         </StackPanel>
                         <StackPanel Grid.Row="2" Margin="100 0 0 0">
                             <TextBlock Margin="20,0,0,0" Text="Rol" Style="{StaticResource textLabel}" />
-                            <TextBox FontSize="8" PreviewTextInput="TextBox_PreviewTextInput" MaxLength="50" Margin="20,0,0,0" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
+                            <ComboBox Background="Transparent" FontSize="8" PreviewTextInput="TextBox_PreviewTextInput" Margin="20,0,0,0" Width="300" Height="33" HorizontalAlignment="Left" Name="txtRol">
+                                <ComboBoxItem>Admin</ComboBoxItem>
+                                <ComboBoxItem>trabajador 1</ComboBoxItem>
+                                <ComboBoxItem>trabajador 2</ComboBoxItem>
+                            </ComboBox>
                         </StackPanel>
 
                         <StackPanel Grid.Row="3" Margin="100 0 0 0"> 
                             <TextBlock Margin="20,0,0,0" Text="Nombre de usuario" Style="{StaticResource textLabel}" />
-                            <TextBox FontSize="8" MaxLength="50" Margin="20,0,0,0" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
+                            <TextBox x:Name="txtNombreUsuario" FontSize="8" MaxLength="50" Margin="20,0,0,0" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="4" Margin="100 0 0 0">
                             <TextBlock Margin="20,0,0,0" Text="Contraseña" Style="{StaticResource textLabel}" />
-                            <TextBox FontSize="8" MaxLength="50" Margin="20,0,0,0" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
+                            <TextBox x:Name="txtPassword" FontSize="8" MaxLength="50" Margin="20,0,0,0" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
 
@@ -112,34 +116,33 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="80 0 0 0">
                             <TextBlock Margin="20,5,0,0" Text="Nombres" Style="{StaticResource textLabel}" />
-                            <TextBox FontSize="8" PreviewTextInput="TextBox_PreviewTextInput" MaxLength="50" Margin="20,5,50,5" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
+                            <TextBox x:Name="txtNombre" FontSize="8" PreviewTextInput="TextBox_PreviewTextInput" MaxLength="50" Margin="20,5,50,5" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="1" Margin="80 0 0 0">
                             <TextBlock Margin="20,5,0,0" Text="Apellidos" Style="{StaticResource textLabel}" />
-                            <TextBox FontSize="8" PreviewTextInput="TextBox_PreviewTextInput" MaxLength="50" Margin="20,5,50,5" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
+                            <TextBox x:Name="txtApellido" FontSize="8" PreviewTextInput="TextBox_PreviewTextInput" MaxLength="50" Margin="20,5,50,5" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="3" Grid.Column="1" Margin="80 0 0 0">
                             <TextBlock Margin="20,5,0,0" Text="Correo" Style="{StaticResource textLabel}" />
-                            <TextBox FontSize="8" MaxLength="50" Margin="20,5,50,5" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
+                            <TextBox x:Name="txtEmail" FontSize="8" MaxLength="50" Margin="20,5,50,5" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="4" Grid.Column="1" Margin="80 0 0 0">
                             <TextBlock Margin="20,5,0,0" Text="Telefono" Style="{StaticResource textLabel}" />
-                            <TextBox FontSize="8" MaxLength="50" PreviewTextInput="TextBox_PreviewTextInput2" Margin="20,5,50,5" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
+                            <TextBox x:Name="txtTelefono" FontSize="8" MaxLength="50" PreviewTextInput="TextBox_PreviewTextInput2" Margin="20,5,50,5" Text="" Width="300" Height="33" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
 
                 </Grid>
 
-                <Button Style="{StaticResource sendButton}" Margin="250 15 250 0" Width="200">
+                <Button x:Name="btnRegistrar" Style="{StaticResource sendButton}" Margin="250 15 250 0" Width="200" Click="Registrar_Click">
                     <StackPanel Orientation="Horizontal">
                         <fa:ImageAwesome Icon="Save" Style="{StaticResource whiteIcon}" Grid.Row="3" VerticalAlignment="Center" />
                         <TextBlock Text="Crear" Margin="10 0 0 0" FontWeight="SemiBold"/>
                     </StackPanel>
                 </Button>
-
             </StackPanel>
         </Border>
 

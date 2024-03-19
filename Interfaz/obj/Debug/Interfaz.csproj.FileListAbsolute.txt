@@ -63,3 +63,46 @@ C:\Users\edu79\Desktop\Nueva carpeta\ProgramacionNcapas\Interfaz\obj\Debug\Inter
 C:\Users\edu79\Desktop\Nueva carpeta\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.csproj.Up2Date
 C:\Users\edu79\Desktop\Nueva carpeta\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.exe
 C:\Users\edu79\Desktop\Nueva carpeta\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.csproj.AssemblyReference.cache
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Ventanas\DashBoard.baml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Resources\Estilos.baml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Paginas\Administrador\Listar.g.cs
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Paginas\Administrador\Registrar.g.cs
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Paginas\Comun\Editar.g.cs
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Paginas\Comun\Historial.g.cs
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Paginas\Comun\Inicio.g.cs
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Ventanas\DashBoard.g.cs
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Ventanas\Login.g.cs
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\App.g.cs
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz_MarkupCompile.cache
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz_MarkupCompile.lref
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.exe
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\Interfaz.exe.config
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\Interfaz.exe
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\Interfaz.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\CapaDatos.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\FontAwesome.WPF.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\MaterialDesignColors.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\ModeloNegocio.dll
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\CapaDatos.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\ModeloNegocio.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\FontAwesome.WPF.xml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\MaterialDesignColors.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Paginas\Administrador\Listar.baml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Paginas\Administrador\Registrar.baml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Paginas\Comun\Editar.baml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Paginas\Comun\Historial.baml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Paginas\Comun\Inicio.baml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz\Ventanas\Login.baml
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.g.resources
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.Properties.Resources.resources
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.csproj.GenerateResource.cache
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.csproj.CoreCompileInputs.cache
+C:\Users\nogal\Source\Repos\ProgramacionNcapas\Interfaz\obj\Debug\Interfaz.csproj.Up2Date

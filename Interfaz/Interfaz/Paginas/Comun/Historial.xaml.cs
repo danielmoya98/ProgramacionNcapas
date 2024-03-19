@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModeloNegocio;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,22 @@ namespace Wallet_Payment.Interfaces.Paginas.Comun
         public Historial()
         {
             InitializeComponent();
+            CargarAuditoria();
+        }
+        private void CargarAuditoria()
+        {
+            try
+            {
+                // Obtener todos los registros de auditoría llamando al método estático del controlador
+                var Auditoria = controllerAuditoria.ObtenerTodasLasAuditorias();
+
+                // Asignar la lista de registros de auditoría al DataGrid
+                datagridAuditoria.ItemsSource = Auditoria;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar la auditoría: {ex.Message}");
+            }
         }
     }
 }

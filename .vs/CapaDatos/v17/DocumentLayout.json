@@ -1,12 +1,170 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\edu79\\Desktop\\Nueva carpeta\\Nueva carpeta\\ProgramacionNcapas\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|c:\\users\\nogal\\source\\repos\\programacionncapas\\interfaz\\interfaz\\paginas\\administrador\\listar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|solutionrelative:interfaz\\interfaz\\paginas\\administrador\\listar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|c:\\users\\nogal\\source\\repos\\programacionncapas\\interfaz\\interfaz\\paginas\\comun\\historial.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|solutionrelative:interfaz\\interfaz\\paginas\\comun\\historial.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|c:\\users\\nogal\\source\\repos\\programacionncapas\\interfaz\\interfaz\\paginas\\comun\\editar.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|solutionrelative:interfaz\\interfaz\\paginas\\comun\\editar.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E7ED731-3EB0-49EF-84DF-1555CE065C11}|ModeloNegocio\\ModeloNegocio.csproj|c:\\users\\nogal\\source\\repos\\programacionncapas\\modelonegocio\\controllerauditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E7ED731-3EB0-49EF-84DF-1555CE065C11}|ModeloNegocio\\ModeloNegocio.csproj|solutionrelative:modelonegocio\\controllerauditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6735D6E7-3E2C-473F-9DC6-868B68B0BE34}|CapaDatos.csproj|c:\\users\\nogal\\source\\repos\\programacionncapas\\coneccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6735D6E7-3E2C-473F-9DC6-868B68B0BE34}|CapaDatos.csproj|solutionrelative:coneccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|c:\\users\\nogal\\source\\repos\\programacionncapas\\interfaz\\interfaz\\ventanas\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|solutionrelative:interfaz\\interfaz\\ventanas\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|c:\\users\\nogal\\source\\repos\\programacionncapas\\interfaz\\interfaz\\ventanas\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|solutionrelative:interfaz\\interfaz\\ventanas\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|c:\\users\\nogal\\source\\repos\\programacionncapas\\interfaz\\interfaz\\paginas\\administrador\\registrar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{77C38490-4A2A-49E5-BFED-5F041512338D}|Interfaz\\Interfaz.csproj|solutionrelative:interfaz\\interfaz\\paginas\\administrador\\registrar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E7ED731-3EB0-49EF-84DF-1555CE065C11}|ModeloNegocio\\ModeloNegocio.csproj|c:\\users\\nogal\\source\\repos\\programacionncapas\\modelonegocio\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E7ED731-3EB0-49EF-84DF-1555CE065C11}|ModeloNegocio\\ModeloNegocio.csproj|solutionrelative:modelonegocio\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Listar.xaml",
+              "DocumentMoniker": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Paginas\\Administrador\\Listar.xaml",
+              "RelativeDocumentMoniker": "Interfaz\\Interfaz\\Paginas\\Administrador\\Listar.xaml",
+              "ToolTip": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Paginas\\Administrador\\Listar.xaml",
+              "RelativeToolTip": "Interfaz\\Interfaz\\Paginas\\Administrador\\Listar.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-03-19T12:36:30.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Historial.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Paginas\\Comun\\Historial.xaml.cs",
+              "RelativeDocumentMoniker": "Interfaz\\Interfaz\\Paginas\\Comun\\Historial.xaml.cs",
+              "ToolTip": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Paginas\\Comun\\Historial.xaml.cs",
+              "RelativeToolTip": "Interfaz\\Interfaz\\Paginas\\Comun\\Historial.xaml.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACEAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T12:35:55.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "controllerAuditoria.cs",
+              "DocumentMoniker": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\ModeloNegocio\\controllerAuditoria.cs",
+              "RelativeDocumentMoniker": "ModeloNegocio\\controllerAuditoria.cs",
+              "ToolTip": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\ModeloNegocio\\controllerAuditoria.cs",
+              "RelativeToolTip": "ModeloNegocio\\controllerAuditoria.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACQAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T12:35:22.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Coneccion.cs",
+              "DocumentMoniker": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Coneccion.cs",
+              "RelativeDocumentMoniker": "Coneccion.cs",
+              "ToolTip": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Coneccion.cs",
+              "RelativeToolTip": "Coneccion.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T12:31:21.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Editar.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Paginas\\Comun\\Editar.xaml.cs",
+              "RelativeDocumentMoniker": "Interfaz\\Interfaz\\Paginas\\Comun\\Editar.xaml.cs",
+              "ToolTip": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Paginas\\Comun\\Editar.xaml.cs",
+              "RelativeToolTip": "Interfaz\\Interfaz\\Paginas\\Comun\\Editar.xaml.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAADMAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T11:52:54.877Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Registrar.xaml",
+              "DocumentMoniker": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Paginas\\Administrador\\Registrar.xaml",
+              "RelativeDocumentMoniker": "Interfaz\\Interfaz\\Paginas\\Administrador\\Registrar.xaml",
+              "ToolTip": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Paginas\\Administrador\\Registrar.xaml",
+              "RelativeToolTip": "Interfaz\\Interfaz\\Paginas\\Administrador\\Registrar.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-03-19T11:52:50.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Interfaz\\Ventanas\\Login.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\nogal\\Source\\Repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Ventanas\\Login.xaml.cs",
+              "RelativeDocumentMoniker": "Interfaz\\Interfaz\\Ventanas\\Login.xaml.cs",
+              "ToolTip": "C:\\Users\\nogal\\Source\\Repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Ventanas\\Login.xaml.cs",
+              "RelativeToolTip": "Interfaz\\Interfaz\\Ventanas\\Login.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T11:20:20.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Login.xaml",
+              "DocumentMoniker": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Ventanas\\Login.xaml",
+              "RelativeDocumentMoniker": "Interfaz\\Interfaz\\Ventanas\\Login.xaml",
+              "ToolTip": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\Interfaz\\Interfaz\\Ventanas\\Login.xaml",
+              "RelativeToolTip": "Interfaz\\Interfaz\\Ventanas\\Login.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-03-19T12:10:34.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Controller.cs",
+              "DocumentMoniker": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\ModeloNegocio\\Controller.cs",
+              "RelativeDocumentMoniker": "ModeloNegocio\\Controller.cs",
+              "ToolTip": "C:\\Users\\nogal\\source\\repos\\ProgramacionNcapas\\ModeloNegocio\\Controller.cs",
+              "RelativeToolTip": "ModeloNegocio\\Controller.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAH8AAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T11:57:06.753Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
