@@ -7,3 +7,12 @@ C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\obj\Debug\ModeloNegocio
 C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\obj\Debug\ModeloNe.7CCD3FB9.Up2Date
 C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\obj\Debug\ModeloNegocio.dll
 C:\Users\Alienware\RiderProjects\CapaDatos\ModeloNegocio\obj\Debug\ModeloNegocio.pdb
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\bin\Debug\ModeloNegocio.dll
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\bin\Debug\ModeloNegocio.pdb
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\bin\Debug\CapaDatos.dll
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNegocio.csproj.AssemblyReference.cache
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNegocio.csproj.CoreCompileInputs.cache
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNe.7CCD3FB9.Up2Date
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNegocio.dll
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\ModeloNegocio\obj\Debug\ModeloNegocio.pdb

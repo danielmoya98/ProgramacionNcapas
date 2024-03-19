@@ -1,0 +1,115 @@
+﻿<Page x:Class="Wallet_Payment.Interfaces.Paginas.Administrador.Listar"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Wallet_Payment.Interfaces.Paginas.Administrador"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1180"
+      Title="Listar">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="\Resources\Estilos.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <StackPanel Grid.Column="1" Margin="0 0 20 0">
+
+        <!--Top Menu-->
+        <StackPanel Orientation="Horizontal" Margin="20 40 20 20" HorizontalAlignment="Left">
+
+            <!--<Button Style="{StaticResource topMenuButton}" Margin="10 0 0 0" Width="300" Height="50">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="Sliders" Style="{StaticResource topMenuIcon}"/>
+                    <TextBlock Text="Add Filters" VerticalAlignment="Center" FontSize="14" Margin="8 0 0 0"/>
+                </StackPanel>
+            </Button>-->
+            <TextBlock Foreground="White" FontSize="50" FontFamily="Verdana" >Listado de los Usuarios</TextBlock>
+
+
+        </StackPanel>
+
+
+        <!--Security Card-->
+        <Border Style="{StaticResource border}" Margin="20 0 20 0">
+            <Grid Margin="15 10">
+                <DataGrid x:Name="DataGridHistorial" 
+                          Height="500"
+                          IsReadOnly="True"
+                          AutoGenerateColumns="False"
+                          Margin="10" Background="#473765" BorderBrush="Transparent">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn Header="ID"
+                            MinWidth="125"
+                            Width="*">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="#ff200E3A" />
+                                    <Setter Property="FontSize" Value="20" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Nombre Usuario"
+                            MinWidth="125"
+                            Width="*">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="#ff200E3A" />
+                                    <Setter Property="FontSize" Value="20" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Rol"
+                            MinWidth="125"
+                            Width="*">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="#ff200E3A" />
+                                    <Setter Property="FontSize" Value="20" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Nombres"
+                            MinWidth="125"
+                            Width="*">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="#ff200E3A" />
+                                    <Setter Property="FontSize" Value="20" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Apellidos"
+                            MinWidth="125"
+                            Width="*">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="#ff200E3A" />
+                                    <Setter Property="FontSize" Value="20" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Telefono"
+                            MinWidth="125"
+                            Width="*">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="#ff200E3A" />
+                                    
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+
+    </StackPanel>
+</Page>

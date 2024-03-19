@@ -4,3 +4,9 @@ C:\Users\Alienware\RiderProjects\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyRe
 C:\Users\Alienware\RiderProjects\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
 C:\Users\Alienware\RiderProjects\CapaDatos\obj\Debug\CapaDatos.dll
 C:\Users\Alienware\RiderProjects\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\bin\Debug\CapaDatos.dll
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\bin\Debug\CapaDatos.pdb
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\obj\Debug\CapaDatos.dll
+C:\Users\edu79\Desktop\Nueva carpeta\Nueva carpeta\ProgramacionNcapas\obj\Debug\CapaDatos.pdb
