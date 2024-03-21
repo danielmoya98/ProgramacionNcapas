@@ -15,78 +15,123 @@ namespace ModeloNegocio
     {
         private static readonly Coneccion conexion = Coneccion.Instance;
 
-        public string IniciarSesion(string nombreusuario, string contraseña)
+        public class Usuario
         {
+            public string NombreCompleto { get; set; }
+            public string Rol { get; set; }
+            public string Email { get; set; }
+            public string Telefono { get; set; }
+        }
+
+        public class RespuestaInicioSesion
+        {
+            public bool SesionIniciada { get; set; }
+            public string Mensaje { get; set; }
+            public Usuario Usuario { get; set; }
+        }
+
+        public RespuestaInicioSesion IniciarSesion(string nombreusuario, string contraseña)
+        {
+            RespuestaInicioSesion respuesta = new RespuestaInicioSesion();
+
             try
             {
+                string contraseñaHash = CalcularHash(contraseña);
                 using (SqlConnection conn = conexion.GetConnection())
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE NombreUsuario = @NombreUsuario AND Password = @Contraseña", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT NombreCompleto, Rol, Email, Telefono FROM Usuarios WHERE NombreUsuario = @NombreUsuario AND PasswordHash = @Contraseña", conn);
                     cmd.Parameters.AddWithValue("@NombreUsuario", nombreusuario);
-                    cmd.Parameters.AddWithValue("@Contraseña", contraseña);
+                    cmd.Parameters.AddWithValue("@Contraseña", contraseñaHash);
 
-                    int cantidadUsuarios = (int)cmd.ExecuteScalar();
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-                    if (cantidadUsuarios > 0)
+                    if (reader.Read())
                     {
-                        // Si se encuentra al menos un usuario con el nombre de usuario y la contraseña proporcionados
-                        return "Sesión iniciada correctamente";
+                        respuesta.SesionIniciada = true;
+                        respuesta.Mensaje = "Sesión iniciada correctamente";
+                        respuesta.Usuario = new Usuario
+                        {
+                            NombreCompleto = reader["NombreCompleto"].ToString(),
+                            Rol = reader["Rol"].ToString(),
+                            Email = reader["Email"].ToString(),
+                            Telefono = reader["Telefono"].ToString()
+                        };
                     }
                     else
                     {
-                        // Si no se encuentra ningún usuario con el nombre de usuario y la contraseña proporcionados
-                        return "Nombre de usuario o contraseña incorrectos";
+                        respuesta.SesionIniciada = false;
+                        respuesta.Mensaje = "Nombre de usuario o contraseña incorrectos";
                     }
                 }
             }
             catch (Exception ex)
             {
+                respuesta.SesionIniciada = false;
+                respuesta.Mensaje = "Error al iniciar sesión. Por favor, inténtelo de nuevo más tarde.";
                 // Registra la excepción para propósitos de depuración
                 Console.WriteLine($"Error al iniciar sesión: {ex.Message}");
-                // Devuelve un mensaje de error genérico al usuario
-                return "Error al iniciar sesión. Por favor, inténtelo de nuevo más tarde.";
             }
+
+            return respuesta;
         }
         public void CrearUsuario(Usuarios usuario)
         {
             try
             {
                 byte[] fotoBytes = ObtenerBytesDesdeImagen(fotoBytesGlobal);
+
                 using (SqlConnection conn = conexion.GetConnection())
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (Nombre, Apellido, Rol, Telefono, Email, Foto,Estado, NombreUsuario, Password) VALUES (@Nombre, @Apellido, @Rol, @Telefono, @Email, @Foto,@Estado, @NombreUsuario, @Password); SELECT SCOPE_IDENTITY();", conn);
-                    cmd.Parameters.AddWithValue("@Email", usuario.Email);
-                    cmd.Parameters.AddWithValue("@Password", usuario.Password); // Asegúrate de cifrar esta contraseña en un entorno real
-                    cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
-                    cmd.Parameters.AddWithValue("@Apellido", usuario.Apellido);
-                    cmd.Parameters.AddWithValue("@Rol", usuario.Rol);
-                    cmd.Parameters.AddWithValue("@Telefono", usuario.Telefono);
-                    cmd.Parameters.AddWithValue("@Foto", fotoBytes);
-                    cmd.Parameters.AddWithValue("@Estado", 1);
-                    cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
-                    int newUserID = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    if (newUserID > 0)
+                    // Iniciar una transacción
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
                     {
-                        // Usuario creado correctamente
-                        Console.WriteLine("Usuario creado correctamente");
+                        SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (Nombre, Apellido, Rol, Telefono, Email, Foto, Estado, NombreUsuario, Password) VALUES (@Nombre, @Apellido, @Rol, @Telefono, @Email, @Foto, @Estado, @NombreUsuario, @Password); SELECT SCOPE_IDENTITY();", conn, transaction);
+                        cmd.Parameters.AddWithValue("@Email", usuario.Email);
+                        cmd.Parameters.AddWithValue("@Password", CalcularHash(usuario.Password)); // Cifrar la contraseña
+                        cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
+                        cmd.Parameters.AddWithValue("@Apellido", usuario.Apellido);
+                        cmd.Parameters.AddWithValue("@Rol", usuario.Rol);
+                        cmd.Parameters.AddWithValue("@Telefono", usuario.Telefono);
+                        cmd.Parameters.AddWithValue("@Foto", fotoBytes);
+                        cmd.Parameters.AddWithValue("@Estado", 1);
+                        cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
+                        int newUserID = Convert.ToInt32(cmd.ExecuteScalar());
 
-                        // Obtener todos los datos del usuario para el registro de auditoría
-                        string nuevoDato = $"Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, Rol: {usuario.Rol}, Telefono: {usuario.Telefono}, Email: {usuario.Email},Estado: {usuario.Estado}, NombreUsuario: {usuario.NombreUsuario}";
+                        if (newUserID > 0)
+                        {
+                            // Usuario creado correctamente
+                            Console.WriteLine("Usuario creado correctamente");
 
-                        // Llamada al procedimiento almacenado de auditoría
-                        SqlCommand cmdAuditoria = new SqlCommand("sp_InsertarAuditoria", conn);
-                        cmdAuditoria.CommandType = CommandType.StoredProcedure;
-                        cmdAuditoria.Parameters.AddWithValue("@UsuarioID", newUserID);
-                        cmdAuditoria.Parameters.AddWithValue("@CampoAfectado", "Nuevo usuario creado");
-                        cmdAuditoria.Parameters.AddWithValue("@NuevoDato", nuevoDato);
-                        cmdAuditoria.ExecuteNonQuery();
+                            // Obtener todos los datos del usuario para el registro de auditoría
+                            string nuevoDato = $"Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, Rol: {usuario.Rol}, Telefono: {usuario.Telefono}, Email: {usuario.Email}, Estado: {usuario.Estado}, NombreUsuario: {usuario.NombreUsuario}";
+
+                            // Llamada al procedimiento almacenado de auditoría
+                            SqlCommand cmdAuditoria = new SqlCommand("sp_InsertarAuditoria", conn, transaction);
+                            cmdAuditoria.CommandType = CommandType.StoredProcedure;
+                            cmdAuditoria.Parameters.AddWithValue("@UsuarioID", newUserID);
+                            cmdAuditoria.Parameters.AddWithValue("@CampoAfectado", "Nuevo usuario creado");
+                            cmdAuditoria.Parameters.AddWithValue("@NuevoDato", nuevoDato);
+                            cmdAuditoria.ExecuteNonQuery();
+
+                            // Confirmar la transacción
+                            transaction.Commit();
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se pudo crear el usuario");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        Console.WriteLine("No se pudo crear el usuario");
+                        // Si ocurre algún error, hacer rollback de la transacción
+                        transaction.Rollback();
+                        Console.WriteLine($"Error al crear usuario: {ex.Message}");
+                        throw;
                     }
                 }
             }
@@ -147,13 +192,16 @@ namespace ModeloNegocio
                 // Obtener el usuario anterior para obtener el dato anterior
                 Usuarios usuarioAnterior = ObtenerUsuarioPorApellido(usuario.Apellido);
 
+                // Hashear la nueva contraseña
+                string hashContraseña = CalcularHash(usuario.Password);
+
                 // Una vez validado, puedes proceder a actualizar el usuario en la base de datos
                 using (SqlConnection conn = CapaDatos.Coneccion.Instance.GetConnection())
                 {
                     conn.Open();
 
                     // Actualizar el usuario en la base de datos
-                    SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET Nombre = @Nombre, Rol = @Rol, Telefono = @Telefono, Email = @Email, Foto = @Foto,Estado = @Estado, NombreUsuario = @NombreUsuario, Password = @Password WHERE Apellido = @Apellido", conn);
+                    SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET Nombre = @Nombre, Rol = @Rol, Telefono = @Telefono, Email = @Email, Foto = @Foto, Estado = @Estado, NombreUsuario = @NombreUsuario, Password = @Password WHERE Apellido = @Apellido", conn);
                     cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
                     cmd.Parameters.AddWithValue("@Apellido", usuario.Apellido);
                     cmd.Parameters.AddWithValue("@Rol", usuario.Rol);
@@ -162,7 +210,7 @@ namespace ModeloNegocio
                     cmd.Parameters.AddWithValue("@Foto", usuario.Foto);
                     cmd.Parameters.AddWithValue("@Estado", usuario.Estado);
                     cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
-                    cmd.Parameters.AddWithValue("@Password", usuario.Password);
+                    cmd.Parameters.AddWithValue("@Password", hashContraseña); // Usar el hash de la contraseña
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
                     if (filasAfectadas > 0)
@@ -187,7 +235,6 @@ namespace ModeloNegocio
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al actualizar usuario: {ex.Message}");
-
             }
         }
 
@@ -284,10 +331,6 @@ namespace ModeloNegocio
 
             return nuevoDato.ToString();
         }
-
-
-
-
 
         public Usuarios BuscarUsuarioPorApellido(string apellido)
         {
@@ -475,7 +518,6 @@ namespace ModeloNegocio
                 return "";
             }
         }
-
 
         //lista
         public static List<Usuarios> ObtenerTodosLosUsuarios()

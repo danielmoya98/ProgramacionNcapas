@@ -69,7 +69,7 @@
                     
                     <StackPanel Grid.Column="1" Grid.Row="2">
                         <TextBlock Text="Apellidos" Style="{StaticResource textLabel}" />
-                        <TextBox x:Name="txtape" Margin="0 5 5 10" Text="" MaxLength="50"/>
+                        <TextBox x:Name="txtape" Margin="0 5 5 10" Text="" MaxLength="50" TextChanged="txtape_TextChanged"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="0" Grid.Row="3">

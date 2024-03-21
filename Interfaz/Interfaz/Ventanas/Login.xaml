@@ -70,8 +70,7 @@
                         </StackPanel>
                         <StackPanel Margin="10" HorizontalAlignment="Center">
                             <Button Style="{StaticResource sendButton}" Width="200"
-                                    x:Name="LoginBtn"
-Click="LoginBtn_Click">
+                                    x:Name="LoginBtn" Click="LoginBtn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:ImageAwesome Icon="Signing" Style="{StaticResource whiteIcon}" Grid.Row="3" VerticalAlignment="Center" />
                                     <TextBlock Text="Login" Margin="10 0 0 0" FontWeight="SemiBold"/>

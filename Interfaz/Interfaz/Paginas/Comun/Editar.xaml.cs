@@ -197,6 +197,6 @@ namespace Wallet_Payment.Interfaces.Paginas.Comun
                 // Mostrar un mensaje de error si ocurre alguna excepción
                 MessageBox.Show($"Error al buscar usuarios por apellido: {ex.Message}");
             }
-        }        
+        }
     }
 }

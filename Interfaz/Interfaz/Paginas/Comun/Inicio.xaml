@@ -21,20 +21,20 @@
             <StackPanel Margin="10 88 10 20">
                 <TextBlock Text="" Foreground="#fcfcfc" TextAlignment="Center" FontSize="34" FontWeight="SemiBold"/>
                 <Grid Margin="0 44 0 22">
-                    <TextBlock Text="Nombre Usuario" Foreground="#fcfcfc" TextAlignment="Center" FontSize="34" FontWeight="SemiBold"/>
+                    <TextBlock Text="Nombre Usuario" x:Name="nameComplet" Foreground="#fcfcfc" TextAlignment="Center" FontSize="34" FontWeight="SemiBold"/>
                 </Grid>
 
                 <StackPanel Margin="250 10 250 5">
                     <TextBlock Margin="0 10 0 5" Text="Rol" TextAlignment="Center" Style="{StaticResource textLabel}" />
-                    <TextBox  Text="Administrador" TextAlignment="Center" IsReadOnly="True"/>
+                    <TextBox  Text="Administrador" Name="txtrol" TextAlignment="Center" IsReadOnly="True"/>
                 </StackPanel>
                 <StackPanel Margin="250 10 250 5">
                     <TextBlock Margin="0 10 0 5" Text="Correo" TextAlignment="Center" Style="{StaticResource textLabel}" />
-                    <TextBox  Text="correo@gmail.com" TextAlignment="Center" IsReadOnly="True"/>
+                    <TextBox  Text="correo@gmail.com" Name="txtemail" TextAlignment="Center" IsReadOnly="True"/>
                 </StackPanel>
                 <StackPanel Margin="250 10 250 5">
                     <TextBlock Margin="0 10 0 10" Text="Telefono" TextAlignment="Center" Style="{StaticResource textLabel}" />
-                    <TextBox  Text="78452233" TextAlignment="Center" IsReadOnly="True"/>
+                    <TextBox  Text="78452233" Name="txtnumber" TextAlignment="Center" IsReadOnly="True"/>
                 </StackPanel>
 
 
@@ -64,5 +64,4 @@
             </Grid>
         </Border>
     </Grid>
-    
 </Page>

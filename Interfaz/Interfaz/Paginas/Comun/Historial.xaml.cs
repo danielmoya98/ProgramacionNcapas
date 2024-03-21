@@ -1,6 +1,8 @@
-﻿using ModeloNegocio;
+﻿using CapaDatos;
+using ModeloNegocio;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,22 +24,37 @@ namespace Wallet_Payment.Interfaces.Paginas.Comun
         public Historial()
         {
             InitializeComponent();
-            CargarAuditoria();
+            CargarAuditorias();
+            CargarAuditorias2();
         }
-        private void CargarAuditoria()
-        {
-            try
-            {
-                // Obtener todos los registros de auditoría llamando al método estático del controlador
-                var Auditoria = controllerAuditoria.ObtenerTodasLasAuditorias();
 
-                // Asignar la lista de registros de auditoría al DataGrid
-                datagridAuditoria.ItemsSource = Auditoria;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al cargar la auditoría: {ex.Message}");
-            }
+        private void CargarAuditorias()
+        {
+            // Obtener las auditorías desde el controlador
+            List<Auditoria_Usuarios> auditorias = controllerAuditoria.ObtenerTodasLasAuditorias();
+
+            // Asignar la lista de auditorías al DataGrid
+            dataGridAuditorias.ItemsSource = auditorias;
+        }
+        private void CargarAuditorias2()
+        {
+            // Obtener las auditorías desde el controlador
+            List<Auditoria_Usuarios_Sesion> auditorias1 = controllerAuditoria.ObtenerTodasLasAuditoriasSesion();
+
+            // Asignar la lista de auditorías al DataGrid
+            dataGridAuditoriassesion.ItemsSource = auditorias1;
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            dataGridAuditorias.Visibility = Visibility.Visible;
+            dataGridAuditoriassesion.Visibility = Visibility.Collapsed;
+        }
+
+        private void aud2_Click(object sender, RoutedEventArgs e)
+        {
+            dataGridAuditorias.Visibility = Visibility.Collapsed;
+            dataGridAuditoriassesion.Visibility = Visibility.Visible;
         }
     }
 }
