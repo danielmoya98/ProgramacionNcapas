@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "WziJmHoltf/2oBt3XFUIAqFmCfmoQXENRQFj1A7y79SfxL3zXPPainUF37GuZgYVmkDWgOKYBbxPfyRkMCw2XQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\InterfazPremiun.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Alienware\\.nuget\\packages\\mahapps.metro.iconpacks\\4.11.0\\mahapps.metro.iconpacks.4.11.0.nupkg.sha512",
+    "C:\\Users\\Alienware\\.nuget\\packages\\mahapps.metro.iconpacks.material\\4.11.0\\mahapps.metro.iconpacks.material.4.11.0.nupkg.sha512",
+    "C:\\Users\\Alienware\\.nuget\\packages\\materialdesigncolors\\3.0.0\\materialdesigncolors.3.0.0.nupkg.sha512",
+    "C:\\Users\\Alienware\\.nuget\\packages\\materialdesignthemes\\5.0.0\\materialdesignthemes.5.0.0.nupkg.sha512",
+    "C:\\Users\\Alienware\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512"
+  ],
+  "logs": []
+}
