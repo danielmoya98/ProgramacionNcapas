@@ -19,7 +19,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Border Margin="10 0 0 20" CornerRadius="10">
+    <Border Margin="10 0 0 5" CornerRadius="10" BorderThickness="2">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Offset="0" Color="#17132b" /> <!-- Color inicial -->
@@ -27,19 +27,26 @@
                 <GradientStop Offset="1" Color="#483655" /> <!-- Color final -->
             </LinearGradientBrush>
         </Border.Background>
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#462AD8" Offset="0"/>
+                <GradientStop Color="#DA34AE" Offset="0.75"/>
+                <GradientStop Color="#8A16C1" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
 
         <Grid ShowGridLines="False">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="172"></RowDefinition>
+                <RowDefinition Height="240"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal">
                 <Image Width="40" Height="40" Margin="25 17 0 0 "
-                       Source="\Imagenes\male1.png"
+                       Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\male1.png"
                        VerticalAlignment="Center">
                 </Image>
                 <TextBlock FontWeight="Bold" Foreground="White" Margin="5 20 0 0 " VerticalAlignment="Center"
@@ -50,40 +57,48 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 30 30 0 ">
                 <Image Width="30" Height="30" Margin="30 0 10 0 "
-                       Source="\Imagenes\buscar.png">
+                       Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\buscar.png">
                 </Image>
-                <TextBox FontWeight="Bold" Foreground="White" Name="searchTextBox" VerticalAlignment="Center" FontSize="15" BorderBrush="White" Width="200"  TextChanged="searchTextBox_TextChanged"></TextBox>
+                <TextBox FontWeight="Bold" Foreground="White" Name="searchTextBox" VerticalAlignment="Center"
+                         FontSize="15" BorderBrush="White" Width="200" TextChanged="searchTextBox_TextChanged">
+                </TextBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="2" Width="Auto">
-                 <DataGrid Margin="25 12 25 0" RowStyle="{DynamicResource DataGridRowStyle1}" Height="Auto" Width="Auto" ColumnHeaderStyle="{DynamicResource  ColumnHeaderStyle}" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid"  Style="{DynamicResource DataGridStyle1}">
-                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+            <StackPanel Grid.Row="2"  Width="Auto">
+                <DataGrid Margin="25 22 25 0" RowStyle="{DynamicResource DataGridRowStyle1}" Height="Auto" Width="Auto"
+                          ColumnHeaderStyle="{DynamicResource  ColumnHeaderStyle}" VerticalScrollBarVisibility="Hidden"
+                          HorizontalScrollBarVisibility="Hidden" CellStyle="{DynamicResource DataGridCellStyle1}"
+                          x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}">
+                    <DataGrid.Columns>
+                        <!--<DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto"
+                                                ElementStyle="{StaticResource CheckBoxStyle1}">
                             <DataGridCheckBoxColumn.HeaderTemplate>
                                 <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle1}" />
                                 </DataTemplate>
                             </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
+                        </DataGridCheckBoxColumn>-->
+                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto"
+                                            Binding="{Binding Number}" />
                         <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{Binding Foto}" Height="35" Width="35"></Image>
-                                        <TextBlock Margin="5 0 0 0" Text="{Binding Name}" VerticalAlignment="Center"/>
+                                        <TextBlock Margin="5 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Email Address" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Phone Number" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn Header="Email Address" Binding="{Binding Email}" IsReadOnly="True"
+                                            Width="*" />
+                        <DataGridTextColumn Header="Phone Number" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
                         <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Click="EditarUsuario_Click" >
+                                        <Button Click="EditarUsuario_Click">
                                             <iconPacks:PackIconMaterial Kind="PencilOutline" />
                                         </Button>
                                     </StackPanel>
@@ -95,33 +110,65 @@
 
                 <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 -10 0 0 ">
                     <userControls:Rol Margin=" 0 15 0  0" Height="180" Width="200"
-                                      Image="\Imagenes\male1.png"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\male1.png"
                                       UpPrice="Administrador" >
                     </userControls:Rol>
                     <userControls:Rol Margin=" 0 15 0  0" Height="180" Width="200"
-                                      Image="\Imagenes\male2.png"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\male2.png"
                                       UpPrice="Administrador">
                     </userControls:Rol>
                     <userControls:Rol Margin=" 0 15 0  0" Height="180" Width="200"
-                                      Image="\Imagenes\userb.png"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\userb.png"
                                       UpPrice="Administrador">
                     </userControls:Rol>
                     <userControls:Rol Margin=" 0 15 0  0" Height="180" Width="200"
-                                      Image="\Imagenes\women.png"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\women.png"
                                       UpPrice="Administrador">
                     </userControls:Rol>
                     <userControls:Rol Margin=" 0 15 0  0" Height="180" Width="200"
-                                      Image="\Imagenes\user.png"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\user.png"
                                       UpPrice="Administrador">
                     </userControls:Rol>
                 </WrapPanel>-->
             </StackPanel>
-            <StackPanel Grid.Row="3" Orientation="Vertical">
-                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 0 ">
+            <StackPanel Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center">
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0 ">
+                    <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0 1 0  0">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0 " HorizontalAlignment="Center">
+                            <Image Width="35" Height="35" Margin="10 22 5 25"
+                                   Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\foto.png">
+                            </Image>
+                            <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15"> Informarcion Personal</TextBlock>
+                        </StackPanel>
+                        <Border Height="150" Width="150" CornerRadius="10" Margin="0 -12 0 0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#302b63" Offset="0" />
+                                    <GradientStop Color="#24243e" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Image Name="Foto"
+                                   Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\user.png">
+                            </Image>
+                        </Border>
+                        <Button Name="OpenFile" Click="OpenFile_OnClick" Margin="90 -50 0 0"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
+                                Background="Blue"
+                                BorderBrush="Transparent"
+                                ToolTip="MaterialDesignFloatingActionMiniSecondaryDarkButton">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                Kind="Photography" />
+                        </Button>
+                        <Button Width="150" Margin="0 10 0 0 "> Editar Usuario</Button>
+                    </StackPanel>
+
                     <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0 0 0  0">
                         <StackPanel Orientation="Horizontal" Margin="25 0 0 0 " HorizontalAlignment="Center">
                             <Image Width="35" Height="35" Margin="0 25 5 25"
-                                   Source="\Imagenes\info.png">
+                                   Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\info.png">
                             </Image>
                             <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15"> Informarcion Personal</TextBlock>
                         </StackPanel>
@@ -130,7 +177,7 @@
                             Margin="30 -10 0 0 "
                             VerticalAlignment="Top"
                             Height="50"
-                            materialDesign:HintAssist.HelperText="(Obligatorio)"
+                            IsEnabled="False"
                             materialDesign:HintAssist.Hint="INGRESE SUS NOMBRES"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             Width="370"
@@ -144,7 +191,7 @@
                             Margin="30 20 0 0 "
                             VerticalAlignment="Top"
                             Height="50"
-                            materialDesign:HintAssist.HelperText="(Obligatorio)"
+                            IsEnabled="False"
                             materialDesign:HintAssist.Hint="INGRESE SUS APELLIDOS"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             Width="370"
@@ -157,7 +204,7 @@
                             Margin="30 20 0 0 "
                             VerticalAlignment="Top"
                             Height="50"
-                            materialDesign:HintAssist.HelperText="(Obligatorio)"
+                            IsEnabled="False"
                             materialDesign:HintAssist.Hint="CARNET IDENTIDAD"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             Width="370"
@@ -167,10 +214,10 @@
 
                         </TextBox>
                     </StackPanel>
-                    <StackPanel Grid.Row="3" Orientation="Vertical" Margin="25 0 0 0">
+                    <StackPanel Grid.Row="3" Orientation="Vertical" Margin="25 0 15 0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Image Width="35" Height="35" Margin="25 25 5 25"
-                                   Source="\Imagenes\info.png">
+                                   Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\info.png">
                             </Image>
                             <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15"> Informarcion Cuenta</TextBlock>
                         </StackPanel>
@@ -178,27 +225,27 @@
                             Margin="30 -10 0 0 "
                             VerticalAlignment="Top"
                             Height="50"
-                            materialDesign:HintAssist.HelperText="(Opcional)"
                             materialDesign:HintAssist.Hint="CORREO ELECTRONICO"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             Width="370"
+                            IsEnabled="False"
                             Foreground="White"
                             BorderBrush="White"
                             HorizontalAlignment="Left">
-
+                            
                         </TextBox>
                         <TextBox
                             Margin="30 20 0 0 "
                             VerticalAlignment="Top"
                             Height="50"
-                            materialDesign:HintAssist.HelperText="(Opcional)"
                             materialDesign:HintAssist.Hint="NOMBRE DE USUARIO"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            IsEnabled="False"
                             Width="370"
                             Foreground="White"
                             BorderBrush="White"
                             HorizontalAlignment="Left">
-
+                            
                         </TextBox>
                         <PasswordBox
                             Margin="30 20 0 0 "
@@ -208,7 +255,6 @@
                             Foreground="White"
                             BorderBrush="White"
                             HorizontalAlignment="Left"
-                            materialDesign:HintAssist.HelperText="(Obligatorio)"
                             materialDesign:HintAssist.Hint="CONTRASEÑA"
                             materialDesign:PasswordBoxAssist.Password="{Binding Path=Password2Validated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
                             Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
@@ -216,12 +262,11 @@
                     </StackPanel>
 
                 </StackPanel>
-                <Button HorizontalAlignment="Center" Margin="0 30 0 0 " Width="200"> Editar Usuario</Button>
             </StackPanel>
 
-            <StackPanel Grid.Row="4" Orientation="Horizontal" Margin=" 10 70 0 0 ">
+            <StackPanel Grid.Row="4" Orientation="Horizontal" Margin=" 10 37 0 0 ">
                 <Image Width="25" Height="25" Margin="25 0 25 0 "
-                       Source="\Imagenes\error.png">
+                       Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\error.png">
                 </Image>
                 <TextBlock Foreground="Yellow" VerticalAlignment="Center" FontSize="15">Nuestra empresa se compromete a mantener a salvo sus datos personales</TextBlock>
             </StackPanel>

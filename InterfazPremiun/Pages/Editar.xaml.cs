@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media.Imaging;
 
 namespace InterfacesOnion.Pages;
 
@@ -15,59 +16,59 @@ public partial class Editar : Page
 
         members.Add(new Member
         {
-            Number = "1", Foto = "\\Imagenes\\male.png",
+            Number = "1", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male.png",
             Name = "John Doe", Position = "Coach", Email = "john.doe@gmail.com", Phone = "415-954-1475"
         });
         members.Add(new Member
         {
-            Number = "2", Foto = "\\Imagenes\\male1.png",
+            Number = "2", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male1.png",
             Name = "Jane Smith", Position = "Assistant Coach", Email = "jane.smith@gmail.com", Phone = "415-954-1476"
         });
         members.Add(new Member
         {
-            Number = "3", Foto = "\\Imagenes\\male2.png",
+            Number = "3", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male2.png",
             Name = "Michael Johnson", Position = "Trainer", Email = "michael.johnson@gmail.com", Phone = "415-954-1477"
         });
         members.Add(new Member
         {
-            Number = "4", Foto = "\\Imagenes\\women.png",
+            Number = "4", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\women.png",
             Name = "Emily Davis", Position = "Physiotherapist", Email = "emily.davis@gmail.com", Phone = "415-954-1478"
         });
         members.Add(new Member
         {
-            Number = "5", Foto = "\\Imagenes\\userb.png",
+            Number = "5", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\userb.png",
             Name = "Andrew Brown", Position = "Nutritionist", Email = "andrew.brown@gmail.com", Phone = "415-954-1479"
         });
         members.Add(new Member
         {
-            Number = "6", Foto = "\\Imagenes\\women.png",
+            Number = "6", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\women.png",
             Name = "Emma Wilson", Position = "Psychologist", Email = "emma.wilson@gmail.com", Phone = "415-954-1480"
         });
         members.Add(new Member
         {
-            Number = "7", Foto = "\\Imagenes\\male1.png",
+            Number = "7", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male1.png",
             Name = "David Martinez", Position = "Fitness Trainer", Email = "david.martinez@gmail.com",
             Phone = "415-954-1481"
         });
         members.Add(new Member
         {
-            Number = "8", Foto = "\\Imagenes\\male2.png",
+            Number = "8", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male2.png",
             Name = "Sarah Adams", Position = "Yoga Instructor", Email = "sarah.adams@gmail.com", Phone = "415-954-1482"
         });
         members.Add(new Member
         {
-            Number = "9", Foto = "\\Imagenes\\male.png",
+            Number = "9", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male.png",
             Name = "Olivia Garcia", Position = "Personal Trainer", Email = "olivia.garcia@gmail.com",
             Phone = "415-954-1483"
         });
         members.Add(new Member
         {
-            Number = "10", Foto = "\\Imagenes\\male2.png",
+            Number = "10", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male2.png",
             Name = "Daniel Clark", Position = "Strength Coach", Email = "daniel.clark@gmail.com", Phone = "415-954-1484"
         });
         members.Add(new Member
         {
-            Number = "11", Foto = "\\Imagenes\\male2.png",
+            Number = "11", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male2.png",
             Name = "Daniel Clark", Position = "Strength Coach", Email = "daniel.clark@gmail.com", Phone = "415-954-1484"
         });
         
@@ -104,6 +105,30 @@ public partial class Editar : Page
         };
     }
     
+    private void OpenFile_OnClick(object sender, RoutedEventArgs e)
+    {
+        // Crear un cuadro de diálogo para abrir archivo
+        Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+
+        // Establecer filtros de archivo si es necesario
+        openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.gif|Todos los archivos|*.*";
+
+        // Mostrar el cuadro de diálogo y esperar a que el usuario seleccione un archivo
+        bool? result = openFileDialog.ShowDialog();
+
+        // Verificar si el usuario ha seleccionado un archivo
+        if (result == true)
+        {
+            // Obtener la ruta del archivo seleccionado
+            string selectedFilePath = openFileDialog.FileName;
+
+            // Cargar la imagen seleccionada en el control Image
+            BitmapImage bitmap = new BitmapImage(new Uri(selectedFilePath));
+            Foto.Source = bitmap; // Reemplaza YourImageControl con el nombre de tu control Image
+        }
+    }
+
+    
     private void EditarUsuario_Click(object sender, RoutedEventArgs e)
     {
         // Obtener la fila seleccionada del DataGrid
@@ -115,6 +140,7 @@ public partial class Editar : Page
             // Cargar los valores en los TextBox correspondientes
             nombreTextBox.Text = rowData.Email;
             apellidoTextBox.Text = rowData.Name;
+            searchTextBox.Text = rowData.Name;
             // Aquí carga otros valores según la estructura de tu objeto de datos
         }
         else

@@ -30,7 +30,7 @@ public partial class Listar : Page
             allData.Add(new Member
             {
                 Number = (i + 1).ToString(),
-                Foto = "\\Imagenes\\male.png",
+                Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male.png",
                 Name = "Name " + (i + 1),
                 Position = "Position " + (i + 1),
                 Email = "email" + (i + 1) + "@example.com",
@@ -63,6 +63,23 @@ public partial class Listar : Page
         if (currentPage < totalPages)
         {
             SetPage(currentPage + 1);
+        }
+    }
+
+    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    {
+        Application.Current.Shutdown();
+    }
+    
+    private void ButtonBase2_OnClick(object sender, RoutedEventArgs e)
+    {
+        
+        DependencyObject parent = VisualTreeHelper.GetParent(this);
+        Window parentWindow = Window.GetWindow(parent);
+    
+        if (parentWindow != null)
+        {
+            parentWindow.WindowState = System.Windows.WindowState.Minimized;
         }
     }
 }

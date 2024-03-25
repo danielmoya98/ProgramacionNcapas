@@ -1,78 +1,219 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
+using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+
 
 namespace InterfacesOnion.Pages;
 
 public partial class Eliminar : Page
 {
+    private ObservableCollection<Member> allData;
+    private ObservableCollection<Member> displayedData;
+    private int itemsPerPage = 11;
+    private int currentPage = 1;
     public Eliminar()
     {
         InitializeComponent();
-        ObservableCollection<Member> members = new ObservableCollection<Member>();
+        InitializeMembers();
+        SetPage(1);
+    }
+    
+    
+    private void DeleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        // Obtener la lista de ítems seleccionados en el DataGrid
+        List<object> selectedItems = new List<object>(membersDataGrid.SelectedItems.Cast<object>());
 
-        members.Add(new Member
-        {
-            Number = "1", Foto = "\\Imagenes\\male.png",
-            Name = "John Doe", Position = "Coach", Email = "john.doe@gmail.com", Phone = "415-954-1475"
-        });
-        members.Add(new Member
-        {
-            Number = "2", Foto = "\\Imagenes\\male1.png",
-            Name = "Jane Smith", Position = "Assistant Coach", Email = "jane.smith@gmail.com", Phone = "415-954-1476"
-        });
-        members.Add(new Member
-        {
-            Number = "3", Foto = "\\Imagenes\\male2.png",
-            Name = "Michael Johnson", Position = "Trainer", Email = "michael.johnson@gmail.com", Phone = "415-954-1477"
-        });
-        members.Add(new Member
-        {
-            Number = "4", Foto = "\\Imagenes\\women.png",
-            Name = "Emily Davis", Position = "Physiotherapist", Email = "emily.davis@gmail.com", Phone = "415-954-1478"
-        });
-        members.Add(new Member
-        {
-            Number = "5", Foto = "\\Imagenes\\userb.png",
-            Name = "Andrew Brown", Position = "Nutritionist", Email = "andrew.brown@gmail.com", Phone = "415-954-1479"
-        });
-        members.Add(new Member
-        {
-            Number = "6", Foto = "\\Imagenes\\women.png",
-            Name = "Emma Wilson", Position = "Psychologist", Email = "emma.wilson@gmail.com", Phone = "415-954-1480"
-        });
-        members.Add(new Member
-        {
-            Number = "7", Foto = "\\Imagenes\\male1.png",
-            Name = "David Martinez", Position = "Fitness Trainer", Email = "david.martinez@gmail.com",
-            Phone = "415-954-1481"
-        });
-        members.Add(new Member
-        {
-            Number = "8", Foto = "\\Imagenes\\male2.png",
-            Name = "Sarah Adams", Position = "Yoga Instructor", Email = "sarah.adams@gmail.com", Phone = "415-954-1482"
-        });
-        members.Add(new Member
-        {
-            Number = "9", Foto = "\\Imagenes\\male.png",
-            Name = "Olivia Garcia", Position = "Personal Trainer", Email = "olivia.garcia@gmail.com",
-            Phone = "415-954-1483"
-        });
-        members.Add(new Member
-        {
-            Number = "10", Foto = "\\Imagenes\\male2.png",
-            Name = "Daniel Clark", Position = "Strength Coach", Email = "daniel.clark@gmail.com", Phone = "415-954-1484"
-        });
-        members.Add(new Member
-        {
-            Number = "11", Foto = "\\Imagenes\\male2.png",
-            Name = "Daniel Clark", Position = "Strength Coach", Email = "daniel.clark@gmail.com", Phone = "415-954-1484"
-        });
+        // Obtener la fuente de datos del DataGrid
+        ObservableCollection<Member> dataSource = membersDataGrid.ItemsSource as ObservableCollection<Member>;
 
+        if (dataSource != null)
+        {
+            // Eliminar cada ítem seleccionado de la fuente de datos
+            foreach (var selectedItem in selectedItems)
+            {
+                dataSource.Remove(selectedItem as Member);
+            }
+        }
+    }
+    
+    
+    /*private void btnDeleteSelected_Click(object sender, RoutedEventArgs e)
+    {
+        // Obtener la fuente de datos del DataGrid
+        ObservableCollection<Member> dataSource = membersDataGrid.ItemsSource as ObservableCollection<Member>;
 
+        if (dataSource != null)
+        {
+            // Crear una lista para almacenar los elementos seleccionados
+            List<Member> selectedItems = new List<Member>();
 
-        membersDataGrid.ItemsSource = members;
+            // Iterar sobre cada fila del DataGrid
+            foreach (Member item in dataSource)
+            {
+                // Obtener el CheckBox asociado a la fila actual
+                DataGridRow row = (DataGridRow)membersDataGrid.ItemContainerGenerator.ContainerFromItem(item);
+                CheckBox checkBox = FindVisualChild<CheckBox>(row);
+
+                // Verificar si el CheckBox está marcado
+                if (checkBox.IsChecked == true)
+                {
+                    // Agregar el elemento correspondiente a la fila actual a la lista de elementos seleccionados
+                    selectedItems.Add(item);
+                }
+            }
+
+            // Eliminar los elementos seleccionados de la fuente de datos
+            foreach (Member selectedItem in selectedItems)
+            {
+                dataSource.Remove(selectedItem);
+            }
+        }
+    }*/
+    
+    private void btnDeleteSelected_Click(object sender, RoutedEventArgs e)
+    {
+        // Obtener la fuente de datos del DataGrid
+        ObservableCollection<Member> dataSource = membersDataGrid.ItemsSource as ObservableCollection<Member>;
+
+        if (dataSource != null)
+        {
+            // Crear una lista para almacenar los elementos seleccionados
+            List<Member> selectedItems = new List<Member>();
+
+            // Contador para contar el número de checkboxes marcados
+            int checkedCount = 0;
+
+            // Iterar sobre cada fila del DataGrid
+            foreach (Member item in dataSource)
+            {
+                // Obtener el CheckBox asociado a la fila actual
+                DataGridRow row = (DataGridRow)membersDataGrid.ItemContainerGenerator.ContainerFromItem(item);
+                CheckBox checkBox = FindVisualChild<CheckBox>(row);
+
+                // Verificar si el CheckBox está marcado
+                if (checkBox.IsChecked == true)
+                {
+                    // Agregar el elemento correspondiente a la fila actual a la lista de elementos seleccionados
+                    selectedItems.Add(item);
+                    checkedCount++; // Incrementar el contador de checkboxes marcados
+                }
+            }
+
+            // Mostrar u ocultar el botón según la cantidad de checkboxes marcados
+            if (checkedCount > 1)
+            {
+                btnDeleteSelected.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnDeleteSelected.Visibility = Visibility.Collapsed;
+            }
+
+            // Mostrar el número de checkboxes marcados en un MessageBox
+            MessageBox.Show("Número de checkboxes marcados: " + checkedCount);
+
+            // Eliminar los elementos seleccionados de la fuente de datos
+            foreach (Member selectedItem in selectedItems)
+            {
+                dataSource.Remove(selectedItem);
+            }
+        }
+    }
+
+    
+    
+    private static T FindVisualChild<T>(DependencyObject obj) where T : DependencyObject
+    {
+        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+        {
+            DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+            if (child != null && child is T)
+            {
+                return (T)child;
+            }
+            else
+            {
+                T childOfChild = FindVisualChild<T>(child);
+                if (childOfChild != null)
+                {
+                    return childOfChild;
+                }
+            }
+        }
+        return null;
+    }
+
+    
+    private void InitializeMembers()
+    {
+        allData = new ObservableCollection<Member>();
+
+        // Agregar más registros para hacer la prueba
+        for (int i = 0; i < 50; i++)
+        {
+            allData.Add(new Member
+            {
+                Number = (i + 1).ToString(),
+                Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male.png",
+                Name = "Name " + (i + 1),
+                Position = "Position " + (i + 1),
+                Email = "email" + (i + 1) + "@example.com",
+                Phone = "415-954-14" + (i + 1)
+            });
+        }
+
+        membersDataGrid.ItemsSource = allData;
+    }
+
+    
+    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    {
+        Application.Current.Shutdown();
+    }
+    
+    private void NextPageButton_Click(object sender, RoutedEventArgs e)
+    {
+        int totalPages = (int)Math.Ceiling((double)allData.Count / itemsPerPage);
+        if (currentPage < totalPages)
+        {
+            SetPage(currentPage + 1);
+        }
+    }
+    
+    private void SetPage(int page)
+    {
+        currentPage = page;
+        int startIndex = (page - 1) * itemsPerPage;
+        displayedData = new ObservableCollection<Member>(allData.Skip(startIndex).Take(itemsPerPage));
+        membersDataGrid.ItemsSource = displayedData;
+    }
+
+    private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (currentPage > 1)
+        {
+            SetPage(currentPage - 1);
+        }
+    }
+    
+    private void ButtonBase2_OnClick(object sender, RoutedEventArgs e)
+    {
+        
+        DependencyObject parent = VisualTreeHelper.GetParent(this);
+        Window parentWindow = Window.GetWindow(parent);
+    
+        if (parentWindow != null)
+        {
+            parentWindow.WindowState = System.Windows.WindowState.Minimized;
+        }
     }
 
     private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -18,7 +18,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Border Margin="10 0 0 20" CornerRadius="10">
+    <Border Margin="10 0 0 5" CornerRadius="10" BorderThickness="2" >
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Offset="0" Color="#17132b" /> <!-- Color inicial -->
@@ -26,6 +26,13 @@
                 <GradientStop Offset="1" Color="#483655" /> <!-- Color final -->
             </LinearGradientBrush>
         </Border.Background>
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#462AD8" Offset="0"/>
+                <GradientStop Color="#DA34AE" Offset="0.75"/>
+                <GradientStop Color="#8A16C1" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
 
         <Grid ShowGridLines="False">
             <Grid.RowDefinitions>
@@ -38,7 +45,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <Image Width="40" Height="40" Margin="25 17 0 0 "
-                       Source="\Imagenes\male1.png"
+                       Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\male1.png"
                        VerticalAlignment="Center">
                 </Image>
                 <TextBlock FontWeight="Bold" Foreground="White" Margin="5 20 0 0 " VerticalAlignment="Center"
@@ -49,45 +56,79 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 30 0 0 ">
                 <Image Width="30" Height="30" Margin="30 0 10 0 "
-                       Source="\Imagenes\ROL.png">
+                       Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\ROL.png">
                 </Image>
                 <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15">Seleccionar Rol</TextBlock>
             </StackPanel>
 
             <StackPanel Grid.Row="2">
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 -10 0 0 ">
-                    <userControls:Rol Margin=" 0 15 20  0" Height="150" Width="150"
-                                      Image="\Imagenes\male1.png"
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0  10 0 0 ">
+                    <userControls:Rol Margin=" 35 25 25  0" Height="150" Width="150"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\male1.png"
                                       UpPrice="Administrador"
                                       Click="Rol_Click">
                     </userControls:Rol>
-                    <userControls:Rol Margin=" 0 15 20  0" Height="150" Width="150"
-                                      Image="\Imagenes\male2.png"
-                                      UpPrice="QA"
+                    <userControls:Rol Margin=" 0 25 25  0" Height="150" Width="150"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\male1.png"
+                                      UpPrice="Desarrollador"
                                       Click="Rol_Click">
                     </userControls:Rol>
-                    <userControls:Rol Margin=" 0 15 20  0" Height="150" Width="150"
-                                      Image="\Imagenes\userb.png"
-                                      UpPrice="Testing"
-                                      Click="Rol_Click">
-                    </userControls:Rol>
-                    <userControls:Rol Margin=" 0 15 20  0" Height="150" Width="150"
-                                      Image="\Imagenes\women.png"
+                    <userControls:Rol Margin=" 0 25 25  0" Height="150" Width="150"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\male2.png"
                                       UpPrice="UI/UX"
                                       Click="Rol_Click">
                     </userControls:Rol>
-                    <userControls:Rol Margin=" 0 15 20  0" Height="150" Width="150"
-                                      Image="\Imagenes\user.png"
+                    <userControls:Rol Margin=" 0 25 25  0" Height="150" Width="150"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\userb.png"
+                                      UpPrice="Testing"
+                                      Click="Rol_Click">
+                    </userControls:Rol>
+                    <userControls:Rol Margin=" 0 25 25  0" Height="150" Width="150"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\women.png"
+                                      UpPrice="Limpieza"
+                                      Click="Rol_Click">
+                    </userControls:Rol>
+                    <userControls:Rol Margin=" 0 25 25  0" Height="150" Width="150"
+                                      Image="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\user.png"
                                       UpPrice="Tecnico" Click="Rol_Click">
                     </userControls:Rol>
                 </WrapPanel>
             </StackPanel>
             <StackPanel Grid.Row="3" Orientation="Vertical">
-                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 0 ">
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 50 0 0 ">
+                    <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0 0 0  0">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0 " HorizontalAlignment="Center">
+                            <Image Width="35" Height="35" Margin="10 25 5 25"
+                                   Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\foto.png">
+                            </Image>
+                            <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15"> Informarcion Personal</TextBlock>
+                        </StackPanel>
+                        <Border Height="150" Width="150" CornerRadius="10" Margin="0 -12 0 0">
+                            <Border.Background>   
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#302b63" Offset="0"/>
+                                    <GradientStop Color="#24243e" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Image Name="Foto" Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\user.png"></Image>
+                        </Border>
+                        <Button Name="OpenFile" Click="OpenFile_OnClick" Margin="90 -50 0 0"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
+                            Background="Blue"
+                            BorderBrush="Transparent"
+                            ToolTip="MaterialDesignFloatingActionMiniSecondaryDarkButton">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                Kind="Photography" />
+                        </Button>
+                        <Button Width="150" Margin="0 10 0 0 " > Crear Usuario</Button>
+                    </StackPanel>
                     <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0 0 0  0">
                         <StackPanel Orientation="Horizontal" Margin="25 0 0 0 " HorizontalAlignment="Center">
                             <Image Width="35" Height="35" Margin="0 25 5 25"
-                                   Source="\Imagenes\info.png">
+                                   Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\info.png">
                             </Image>
                             <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15"> Informarcion Personal</TextBlock>
                         </StackPanel>
@@ -134,7 +175,7 @@
                     <StackPanel Grid.Row="3" Orientation="Vertical" Margin="25 0 0 0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Image Width="35" Height="35" Margin="25 25 5 25"
-                                   Source="\Imagenes\info.png">
+                                   Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\info.png">
                             </Image>
                             <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15"> Informarcion Cuenta</TextBlock>
                         </StackPanel>
@@ -180,12 +221,11 @@
                     </StackPanel>
 
                 </StackPanel>
-                <Button HorizontalAlignment="Center" Margin="0 30 0 0 " Width="200"> Crear Usuario</Button>
             </StackPanel>
 
             <StackPanel Grid.Row="4" Orientation="Horizontal" Margin=" 10 88 0 0 ">
                 <Image Width="25" Height="25" Margin="25 0 25 0 "
-                       Source="\Imagenes\error.png">
+                       Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\error.png">
                 </Image>
                 <TextBlock Foreground="Yellow" VerticalAlignment="Center" FontSize="15">Nuestra empresa se compromete a mantener a salvo sus datos personales</TextBlock>
             </StackPanel>

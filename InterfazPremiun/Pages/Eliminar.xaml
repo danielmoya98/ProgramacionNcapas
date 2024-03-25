@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:InterfacesOnion.Pages"
       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       mc:Ignorable="d"
-      Title="Eliminar"  Height="768" Width="Auto">
-    
+      Title="Eliminar" Height="768" Width="Auto">
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,60 +15,108 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
-    <Border Margin="10 0 0 20" CornerRadius="10">
+
+    <Border Margin="10 0 0 5" CornerRadius="10" BorderThickness="2">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Offset="0" Color="#17132b"/> <!-- Color inicial -->
-                <GradientStop Offset="0.5" Color="#34144a"/> <!-- Color medio -->
-                <GradientStop Offset="1" Color="#483655"/> <!-- Color final -->
+                <GradientStop Offset="0" Color="#17132b" /> <!-- Color inicial -->
+                <GradientStop Offset="0.5" Color="#34144a" /> <!-- Color medio -->
+                <GradientStop Offset="1" Color="#483655" /> <!-- Color final -->
             </LinearGradientBrush>
         </Border.Background>
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#462AD8" Offset="0"/>
+                <GradientStop Color="#DA34AE" Offset="0.75"/>
+                <GradientStop Color="#8A16C1" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
         <StackPanel Orientation="Vertical">
-            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 30 30 0 ">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 30 0 ">
                 <Image Width="30" Height="30" Margin="30 0 10 0 "
-                       Source="\Imagenes\buscar.png">
+                       Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\buscar.png">
                 </Image>
-                <TextBox FontWeight="Bold" Foreground="White" Name="searchTextBox" VerticalAlignment="Center" FontSize="15" BorderBrush="White" Width="200"  TextChanged="searchTextBox_TextChanged"></TextBox>
+                <TextBox FontWeight="Bold" Foreground="White" Name="searchTextBox" VerticalAlignment="Center"
+                         FontSize="15" BorderBrush="White" Width="200" TextChanged="searchTextBox_TextChanged">
+                </TextBox>
+                <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1"
+                        CornerRadius="5"
+                        Padding="5" Background="#ffffff" Margin="25 5 0 5">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource pagingButton}" Click="ButtonBase2_OnClick">
+                            <iconPacks:PackIconMaterial Kind="ArrowDown" />
+                        </Button>
+
+                        <Button Style="{StaticResource pagingButton}" Click="ButtonBase_OnClick">
+                            <iconPacks:PackIconMaterial Kind="Close" />
+                        </Button>
+
+                    </StackPanel>
+                </Border>
             </StackPanel>
-  <DataGrid Margin="25 12 25 0" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource ColumnHeaderStyle}" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid"  Style="{DynamicResource DataGridStyle1}">
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
-                        <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding Foto}" Height="35" Width="35"></Image>
-                                        <TextBlock Margin="5 0 0 0" Text="{Binding Name}" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Email Address" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Phone Number" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
-                        <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                       <Button Margin="0 0 0 0" >
-                                            <iconPacks:PackIconMaterial Kind="DeleteOutline" />
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+            <DataGrid Margin="25 0 25 0" RowStyle="{DynamicResource DataGridRowStyle1}"
+                      ColumnHeaderStyle="{DynamicResource ColumnHeaderStyle}" VerticalScrollBarVisibility="Hidden"
+                      HorizontalScrollBarVisibility="Hidden" CellStyle="{DynamicResource DataGridCellStyle1}"
+                      x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto"
+                                            ElementStyle="{StaticResource CheckBoxStyle1}">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox  Style="{StaticResource CheckBoxStyle1}" />
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto"
+                                        Binding="{Binding Number}" />
+                    <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Foto}" Height="35" Width="35"></Image>
+                                    <TextBlock Margin="5 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Email Address" Binding="{Binding Email}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Phone Number" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
+                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="0 0 0 0" Click="DeleteButton_Click">
+                                        <iconPacks:PackIconMaterial Kind="DeleteOutline" />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="btnDeleteSelected" Content="Borrar Seleccionados" Click="btnDeleteSelected_Click"
+                        Visibility="Visible" Margin="0 0 25 0 " Height="39" />
+
+                <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1"
+                        CornerRadius="5"
+                        Padding="5" Background="#ffffff" Margin="0 5 25 10">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource pagingButton}" Click="PreviousPageButton_Click">
+                            <iconPacks:PackIconMaterial Kind="ChevronLeft" />
+                        </Button>
+
+                        <Button Style="{StaticResource pagingButton}" Click="NextPageButton_Click">
+                            <iconPacks:PackIconMaterial Kind="ChevronRight" />
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
         </StackPanel>
-      
+
     </Border>
 </Page>
-

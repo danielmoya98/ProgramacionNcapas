@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace InterfacesOnion.Pages
 {
@@ -30,7 +31,7 @@ namespace InterfacesOnion.Pages
                 allData.Add(new Member
                 {
                     Number = (i + 1).ToString(),
-                    Foto = "\\Imagenes\\male.png",
+                    Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male.png",
                     Name = "Name " + (i + 1),
                     Position = "Position " + (i + 1),
                     Email = "email" + (i + 1) + "@example.com",
@@ -54,6 +55,23 @@ namespace InterfacesOnion.Pages
             if (currentPage > 1)
             {
                 SetPage(currentPage - 1);
+            }
+        }
+        
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+    
+        private void ButtonBase2_OnClick(object sender, RoutedEventArgs e)
+        {
+        
+            DependencyObject parent = VisualTreeHelper.GetParent(this);
+            Window parentWindow = Window.GetWindow(parent);
+    
+            if (parentWindow != null)
+            {
+                parentWindow.WindowState = System.Windows.WindowState.Minimized;
             }
         }
 

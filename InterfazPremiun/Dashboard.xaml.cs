@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using InterfacesOnion.Pages;
 
 namespace InterfacesOnion;
@@ -7,7 +9,7 @@ namespace InterfacesOnion;
 public partial class Dashboard : Window
 {
     // private readonly string usuarioActualRol;
-    public Dashboard(/*string rolUsuarioActual*/)
+    public Dashboard( /*string rolUsuarioActual*/)
     {
         InitializeComponent();
         frame.NavigationService.Navigate(new Listar());
@@ -27,7 +29,6 @@ public partial class Dashboard : Window
     private void EditarUsuarios_OnClick(object sender, RoutedEventArgs e)
     {
         frame.NavigationService.Navigate(new Editar());
-
     }
 
     private void Listar_OnClick(object sender, RoutedEventArgs e)

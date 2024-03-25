@@ -13,7 +13,6 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-       
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Login"  Height="550" Width="400"
         WindowStyle="None"
@@ -22,8 +21,17 @@
         Background="Transparent"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="/Dictionary1.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
-            <Border CornerRadius="12">
+    <Border CornerRadius="12">
         <Border.Background>
             Transparent
         </Border.Background>
@@ -46,24 +54,38 @@
             </Border.Background>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="60"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="ONION PROJECT"
                                Foreground="DarkGray"
-                               FontSize="10"
-                               FontFamily="Montserrat"
+                               FontSize="15"
+                               FontWeight="Bold"
                                Grid.Column="0"
                                VerticalAlignment="Center"
                                Margin="10,0,0,0"/>
-                    <Button x:Name="btnMinimize"                           
+                    
+                    <Border  HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5"
+                            Padding="5" Background="#ffffff" Margin="0 10 -15 5">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource pagingButton}" Click="ButtonBase2_OnClick">
+                                <iconPacks:PackIconMaterial Kind="ArrowDown" />
+                            </Button>
+
+                            <Button Style="{StaticResource pagingButton}" Click="ButtonBase_OnClick">
+                                <iconPacks:PackIconMaterial Kind="Close" />
+                            </Button>
+
+                        </StackPanel>
+                    </Border>
+                    <!--<Button x:Name="btnMinimize"                           
                             BorderThickness="0"
                             Content="-"
                             Foreground="White"
@@ -122,19 +144,19 @@
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
-                    </Button>
+                    </Button>-->
                 </Grid>
                 <StackPanel Width="220"
                             Grid.Row="1"
                             Orientation="Vertical"
+                            HorizontalAlignment="Center"
                             Margin="0,35,0,0">
-                    <Image Source="\Imagenes\2 (2).png"
+                    <Image Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\icons8-navegador-tor-256.png"
                            Width="100" Height="100"/>
                     <TextBlock Text="ONION"
                                Foreground="White"
                                FontSize="25"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
+                               FontWeight="Bold"
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="Learning to code is useful no matter what your career ambitions are."
                                Foreground="LightGray"
@@ -144,83 +166,42 @@
                                TextWrapping="Wrap"
                                TextAlignment="Center"
                                Margin="0,5,0,0"/>
-                    <TextBlock Text="Username"
-                               Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"                             
-                               Margin="0,35,0,0"/>
-                    <TextBox x:Name="txtUser"
-                             FontSize="13"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"                            
-                             Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
-                             BorderThickness="0,0,0,2"
-                             Height="28"
-                             VerticalContentAlignment="Center"
-                             Margin="0,5,0,0"
-                             Padding="20,0,0,0">
-                        <TextBox.Background>
-                            <ImageBrush ImageSource="\Imagenes\user-icon.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/>
-                        </TextBox.Background>
+                    <TextBox
+                        Margin="0 10 0 0 "
+                        VerticalAlignment="Top"
+                        Height="50"
+                        materialDesign:HintAssist.Hint="NOMBRE DE USUARIO"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        Width="200"
+                        Foreground="White"
+                        BorderBrush="White"
+                        HorizontalAlignment="Center">
+                            
                     </TextBox>
-                    <TextBlock Text="Password"
-                               Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"                             
-                               Margin="0,15,0,0"/>
-                    <PasswordBox x:Name="txtPass"
-                             FontSize="13"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"                            
-                             Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
-                             BorderThickness="0,0,0,2"
-                             Height="28"
-                             VerticalContentAlignment="Center"
-                             Margin="0,5,0,0"
-                             Padding="20,0,0,0">
-                        <PasswordBox.Background>
-                            <ImageBrush ImageSource="\Imagenes\key-icon.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/>
-                        </PasswordBox.Background>
-                    </PasswordBox>
+                    <PasswordBox
+                        Margin="0 25 0 0 "
+                        VerticalAlignment="Top"
+                        Height="50"
+                        Width="200"
+                        Foreground="White"
+                        BorderBrush="White"
+                        HorizontalAlignment="Center"
+                        materialDesign:HintAssist.Hint="CONTRASEÑA"
+                        materialDesign:PasswordBoxAssist.Password="{Binding Path=Password2Validated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
+                        Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
                     <Button x:Name="btnLogin"                          
                             BorderThickness="0"
                             Content="LOG IN"
                             Foreground="White"
                             FontSize="12"
                             FontFamily="Montserrat"
-                            Cursor="Hand"                           
-                            Margin="0,50,0,0"
+                            Cursor="Hand"
+                            HorizontalAlignment="Center"
+                            Height="40"
+                            Width="200"
+                            Margin="0 30 0 0"
                             Click="ButtonBase2_OnClick">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#462AD8"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#28AEED"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="150" Height="40"
-                                        CornerRadius="20"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
+                        
                     </Button>
                   
                 </StackPanel>
