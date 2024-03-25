@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace InterfacesOnion.Pages;
 
@@ -12,6 +13,7 @@ public partial class Listar : Page
     private ObservableCollection<Member> displayedData;
     private int itemsPerPage = 11;
     private int currentPage = 1;
+    
 
     public Listar()
     {
@@ -65,6 +67,9 @@ public partial class Listar : Page
             SetPage(currentPage + 1);
         }
     }
+    
+    
+
 
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {

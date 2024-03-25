@@ -88,16 +88,25 @@
                             
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                 <!-- Contenedor del texto -->
-                                <Label Content="DANIEL M."
-                                       Foreground="{DynamicResource PrimaryTextColor}"
-                                       FontWeight="Bold"
-                                       FontSize="15"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Margin="60 10 0 0" />
-
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="DANIEL M."
+                                           Foreground="{DynamicResource PrimaryTextColor}"
+                                           FontWeight="Bold"
+                                           FontSize="15"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Margin="60 10 0 0" />
+                                    <Label Content="Admistrador"
+                                           Foreground="DarkGray"
+                                           FontWeight="Bold"
+                                           FontSize="12"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Margin="60 -10 0 0" />
+    
+                                </StackPanel>
                                 <!-- Contenedor de la imagen -->
-                                <Canvas Margin="10 10 0 0">
+                                <Canvas Margin="10 15 0 0">
                                     <Image Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\hand.png" 
                                            Height="25" 
                                            Width="25">

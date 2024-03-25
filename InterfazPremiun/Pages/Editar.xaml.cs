@@ -4,16 +4,25 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace InterfacesOnion.Pages;
 
 public partial class Editar : Page
 {
+    private string fullText = "Nuestra empresa se compromete a mantener a salvo sus datos personales";
+    private string displayedText = "";
+    private int currentIndex = 0;
+    private DispatcherTimer timer;
     public Editar()
     {
         InitializeComponent();
         ObservableCollection<Member> members = new ObservableCollection<Member>();
-
+        timer = new DispatcherTimer();
+        timer.Interval = TimeSpan.FromSeconds(0.1);
+        timer.Tick += Timer_Tick;
+        timer.Start();
+        
         members.Add(new Member
         {
             Number = "1", Foto = "C:\\Users\\Alienware\\RiderProjects\\ProgramacionNcapas\\InterfazPremiun\\Imagenes\\male.png",
@@ -75,6 +84,21 @@ public partial class Editar : Page
 
 
         membersDataGrid.ItemsSource = members;
+    }
+    
+    
+    private void Timer_Tick(object sender, EventArgs e)
+    {
+        if (currentIndex < fullText.Length)
+        {
+            displayedText += fullText[currentIndex];
+            txtAnimated.Text = displayedText;
+            currentIndex++;
+        }
+        else
+        {
+            timer.Stop(); // Detener el temporizador cuando se ha mostrado todo el texto
+        }
     }
     
     private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)

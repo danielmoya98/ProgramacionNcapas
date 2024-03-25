@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="\Dictionary1.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+     
     </Page.Resources>
 
     <Border Margin="10 0 0 5" CornerRadius="10" BorderThickness="2">
@@ -59,11 +60,10 @@
                       HorizontalScrollBarVisibility="Hidden" CellStyle="{DynamicResource DataGridCellStyle1}"
                       x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto"
-                                            ElementStyle="{StaticResource CheckBoxStyle1}">
+                    <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                         <DataGridCheckBoxColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox  Style="{StaticResource CheckBoxStyle1}" />
+                                <CheckBox  Style="{StaticResource CheckBoxStyle1}"  />
                             </DataTemplate>
                         </DataGridCheckBoxColumn.HeaderTemplate>
                     </DataGridCheckBoxColumn>

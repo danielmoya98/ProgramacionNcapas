@@ -1,14 +1,38 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace InterfacesOnion.Pages;
 
 public partial class Registrar : Page
 {
+    
+    private string fullText = "Nuestra empresa se compromete a mantener a salvo sus datos personales";
+    private string displayedText = "";
+    private int currentIndex = 0;
+    private DispatcherTimer timer;
     public Registrar()
     {
         InitializeComponent();
+        timer = new DispatcherTimer();
+        timer.Interval = TimeSpan.FromSeconds(0.1);
+        timer.Tick += Timer_Tick;
+        timer.Start();
+    }
+    
+    private void Timer_Tick(object sender, EventArgs e)
+    {
+        if (currentIndex < fullText.Length)
+        {
+            displayedText += fullText[currentIndex];
+            txtAnimated.Text = displayedText;
+            currentIndex++;
+        }
+        else
+        {
+            timer.Stop(); // Detener el temporizador cuando se ha mostrado todo el texto
+        }
     }
     
     private void Rol_Click(object sender, RoutedEventArgs e)

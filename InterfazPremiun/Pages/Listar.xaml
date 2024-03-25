@@ -47,7 +47,7 @@
 
                 </StackPanel>
             </Border>
-            <DataGrid Margin="25 0 25 0" RowStyle="{DynamicResource DataGridRowStyle1}"
+            <DataGrid Margin="25 0 25 0" HorizontalAlignment="Left" RowStyle="{DynamicResource DataGridRowStyle1}"
                       ColumnHeaderStyle="{DynamicResource ColumnHeaderStyle}" VerticalScrollBarVisibility="Hidden"
                       HorizontalScrollBarVisibility="Hidden" CellStyle="{DynamicResource DataGridCellStyle1}"
                       x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}">
@@ -90,6 +90,20 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>-->
             </DataGrid.Columns>
+                <!--<DataGrid.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Width"
+                                    From="0"
+                                    To="1" 
+                                    Duration="0:0:1" /> ~1~ Duración de la animación @1@
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </DataGrid.Triggers>-->
+
         </DataGrid>
 
         <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5"

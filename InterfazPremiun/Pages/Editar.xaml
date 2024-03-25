@@ -268,7 +268,7 @@
                 <Image Width="25" Height="25" Margin="25 0 25 0 "
                        Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\error.png">
                 </Image>
-                <TextBlock Foreground="Yellow" VerticalAlignment="Center" FontSize="15">Nuestra empresa se compromete a mantener a salvo sus datos personales</TextBlock>
+                <TextBlock x:Name="txtAnimated" Foreground="Yellow" VerticalAlignment="Center" FontSize="15"/>
             </StackPanel>
 
         </Grid>

@@ -127,6 +127,29 @@ public partial class Eliminar : Page
             }
         }
     }
+    
+    private void CheckBox_Checked(object sender, RoutedEventArgs e)
+    {
+        // Obtener la fila correspondiente al CheckBox
+        DataGridRow row = (DataGridRow)membersDataGrid.ItemContainerGenerator.ContainerFromItem(((FrameworkElement)sender).DataContext);
+
+        if (row != null)
+        {
+            row.IsSelected = true; // Seleccionar la fila
+        }
+    }
+
+    private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+    {
+        // Obtener la fila correspondiente al CheckBox
+        DataGridRow row = (DataGridRow)membersDataGrid.ItemContainerGenerator.ContainerFromItem(((FrameworkElement)sender).DataContext);
+
+        if (row != null)
+        {
+            row.IsSelected = false; // Desseleccionar la fila
+        }
+    }
+
 
     
     
@@ -151,6 +174,22 @@ public partial class Eliminar : Page
         return null;
     }
 
+    
+    private void HeaderCheckBox_Checked(object sender, RoutedEventArgs e)
+    {
+        foreach (DataGridRow row in membersDataGrid.Items)
+        {
+            row.Background = Brushes.Black;
+        }
+    }
+
+    private void HeaderCheckBox_Unchecked(object sender, RoutedEventArgs e)
+    {
+        foreach (DataGridRow row in membersDataGrid.Items)
+        {
+            row.Background = SystemColors.WindowBrush;
+        }
+    }
     
     private void InitializeMembers()
     {
