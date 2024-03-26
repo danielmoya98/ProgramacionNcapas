@@ -27,27 +27,33 @@
         </Border.Background>
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#462AD8" Offset="0"/>
-                <GradientStop Color="#DA34AE" Offset="0.75"/>
-                <GradientStop Color="#8A16C1" Offset="1"/>
+                <GradientStop Color="#462AD8" Offset="0" />
+                <GradientStop Color="#DA34AE" Offset="0.75" />
+                <GradientStop Color="#8A16C1" Offset="1" />
             </LinearGradientBrush>
         </Border.BorderBrush>
 
         <StackPanel Orientation="Vertical">
-            <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5"
-                    Padding="5" Background="#ffffff" Margin="0 5 25 5">
-                <StackPanel Orientation="Horizontal">
-                    <Button Style="{StaticResource pagingButton}" Click="ButtonBase2_OnClick">
-                        <iconPacks:PackIconMaterial Kind="ArrowDown" />
-                    </Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Click="ButtonBase3_OnClick" Name="sesion" Margin="0 0 20 0">Auditoria de Sesion</Button>
+                <Button Visibility="Collapsed" Click="Operacion_OnClick" Name="operacion" Margin="0 0 20 0">Auditoria de Operaciones</Button>
+                <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5"
+                        Padding="5" Background="#ffffff" Margin="0 5 25 5">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource pagingButton}" Click="ButtonBase2_OnClick">
+                            <iconPacks:PackIconMaterial Kind="ArrowDown" />
+                        </Button>
 
-                    <Button Style="{StaticResource pagingButton}" Click="ButtonBase_OnClick">
-                        <iconPacks:PackIconMaterial Kind="Close" />
-                    </Button>
+                        <Button Style="{StaticResource pagingButton}" Click="ButtonBase_OnClick">
+                            <iconPacks:PackIconMaterial Kind="Close" />
+                        </Button>
 
-                </StackPanel>
-            </Border>
-            <DataGrid Margin="25 0 25 0"  RowStyle="{DynamicResource DataGridRowStyle1}"
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+            
+            <DataGrid Visibility="Visible" Margin="25 0 25 0" RowStyle="{DynamicResource DataGridRowStyle1}"
                       ColumnHeaderStyle="{DynamicResource ColumnHeaderStyle}" VerticalScrollBarVisibility="Hidden"
                       HorizontalScrollBarVisibility="Hidden" CellStyle="{DynamicResource DataGridCellStyle1}"
                       x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}">
@@ -60,21 +66,80 @@
                             </DataTemplate>
                         </DataGridCheckBoxColumn.HeaderTemplate>
                     </DataGridCheckBoxColumn>-->
-                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto"
+                    <!--auditoria operaciones-->
+                    <!--<DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto"
                                         Binding="{Binding Number}" />
-                    <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
+                    -->
+                    <DataGridTemplateColumn Header="Responsable" IsReadOnly="True" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Foto}" Height="35" Width="35"></Image>
-                                    <TextBlock Margin="5 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="0 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
+                                        <TextBlock Margin="5 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <TextBlock Margin="0 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*" />
-                    <DataGridTextColumn Header="Email Address" Binding="{Binding Email}" IsReadOnly="True" Width="*" />
-                    <DataGridTextColumn Header="Phone Number" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Operacion" Binding="{Binding Position}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Fecha Operacion" Binding="{Binding Email}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Campo Afectado" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Dato Anterior" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Nuevo Dato" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
+                    <!--<DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button >
+                                            <iconPacks:PackIconMaterial Kind="PencilOutline" />
+                                        </Button>
+                                        <Button Margin="5 0 0 0" >
+                                            <iconPacks:PackIconMaterial Kind="DeleteOutline" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>-->
+                </DataGrid.Columns>
+            </DataGrid>
+             <DataGrid Visibility="Collapsed" Margin="25 0 25 0" RowStyle="{DynamicResource DataGridRowStyle1}"
+                      ColumnHeaderStyle="{DynamicResource ColumnHeaderStyle}" VerticalScrollBarVisibility="Hidden"
+                      HorizontalScrollBarVisibility="Hidden" CellStyle="{DynamicResource DataGridCellStyle1}"
+                      x:Name="membersDataGrid1" Style="{DynamicResource DataGridStyle1}">
+                <DataGrid.Columns>
+                    <!--<DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto"
+                                            ElementStyle="{StaticResource CheckBoxStyle1}">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Style="{StaticResource CheckBoxStyle1}" />
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>-->
+                    <!--auditoria operaciones-->
+                    <!--<DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto"
+                                        Binding="{Binding Number}" />
+                    -->
+                    <!--<DataGridTemplateColumn Header="Nombre de Usuario Ingresado" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="0 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
+                                        <TextBlock Margin="5 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <TextBlock Margin="0 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                    <DataGridTextColumn Header="Nombre de Usuario Ingresado" Binding="{Binding Position}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Contraseña Ingresado" Binding="{Binding Email}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Resultado del Intento" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Fecha/Hora de Intento" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Fecha/Hora de Ingreso" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Fecha/Hora de Salida" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
                     <!--<DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -96,11 +161,11 @@
                     Padding="5" Background="#ffffff" Margin="0 5 25 10">
                 <StackPanel Orientation="Horizontal">
                     <Button Style="{StaticResource pagingButton}" Click="PreviousPageButton_Click">
-                        <iconPacks:PackIconMaterial Kind="ChevronLeft"  />
+                        <iconPacks:PackIconMaterial Kind="ChevronLeft" />
                     </Button>
 
                     <Button Style="{StaticResource pagingButton}" Click="NextPageButton_Click">
-                        <iconPacks:PackIconMaterial Kind="ChevronRight"  />
+                        <iconPacks:PackIconMaterial Kind="ChevronRight" />
                     </Button>
 
                 </StackPanel>

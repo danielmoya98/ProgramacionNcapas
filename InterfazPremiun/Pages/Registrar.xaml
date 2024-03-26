@@ -98,10 +98,10 @@
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 50 0 0 ">
                     <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0 0 0  0">
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 0 " HorizontalAlignment="Center">
-                            <Image Width="35" Height="35" Margin="10 25 5 25"
+                            <Image Width="35" Height="35" Margin="-5 25 5 25"
                                    Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\foto.png">
                             </Image>
-                            <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15"> Informarcion Personal</TextBlock>
+                            <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15"> Foto de Perfil</TextBlock>
                         </StackPanel>
                         <Border Height="150" Width="150" CornerRadius="10" Margin="0 -12 0 0">
                             <Border.Background>   

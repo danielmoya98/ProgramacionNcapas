@@ -78,22 +78,26 @@
                                 </DataTemplate>
                             </DataGridCheckBoxColumn.HeaderTemplate>
                         </DataGridCheckBoxColumn>-->
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto"
+                        <!--<DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto"
                                             Binding="{Binding Number}" />
-                        <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
+                        -->
+                        <DataGridTemplateColumn  Header="Usuario"   IsReadOnly="True" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Margin=" -10 0 0 0 ">
                                         <Image Source="{Binding Foto}" Height="35" Width="35"></Image>
-                                        <TextBlock Margin="5 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Margin="5 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
+                                            <TextBlock Margin="5 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" />
+                                        </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn Header="Email Address" Binding="{Binding Email}" IsReadOnly="True"
-                                            Width="*" />
-                        <DataGridTextColumn Header="Phone Number" Binding="{Binding Phone}" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn Header="CI" Binding="{Binding Position}" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn Header="Nombre de Usuario" Binding="{Binding Email}" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn Header="Rol" Binding="{Binding Email}" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn Header="Email" Binding="{Binding Phone}" IsReadOnly="True" Width="*" /> 
                         <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -135,10 +139,10 @@
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0 ">
                     <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0 1 0  0">
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 0 " HorizontalAlignment="Center">
-                            <Image Width="35" Height="35" Margin="10 22 5 25"
+                            <Image Width="35" Height="35" Margin="-5 25 5 25"
                                    Source="C:\Users\Alienware\RiderProjects\ProgramacionNcapas\InterfazPremiun\Imagenes\foto.png">
                             </Image>
-                            <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15"> Informarcion Personal</TextBlock>
+                            <TextBlock FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="15"> Foto de Perfil</TextBlock>
                         </StackPanel>
                         <Border Height="150" Width="150" CornerRadius="10" Margin="0 -12 0 0">
                             <Border.Background>

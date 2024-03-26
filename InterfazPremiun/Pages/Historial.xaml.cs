@@ -83,5 +83,22 @@ namespace InterfacesOnion.Pages
                 SetPage(currentPage + 1);
             }
         }
+
+        private void ButtonBase3_OnClick(object sender, RoutedEventArgs e)
+        {
+            membersDataGrid.Visibility = Visibility.Collapsed;
+            membersDataGrid1.Visibility = Visibility.Visible;
+            sesion.Visibility = Visibility.Collapsed;
+            operacion.Visibility = Visibility.Visible;
+
+        }
+
+        private void Operacion_OnClick(object sender, RoutedEventArgs e)
+        {
+            membersDataGrid.Visibility = Visibility.Visible;
+            membersDataGrid1.Visibility = Visibility.Collapsed;
+            sesion.Visibility = Visibility.Visible;
+            operacion.Visibility = Visibility.Collapsed;
+        }
     }
 }
