@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InterfazPremiun")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c4ed52f3d67cda2ae82d7aa5c3abc1d0e10d7f9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1293f4f126f0a21e2b9404882f4c7a22146c79cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("InterfazPremiun")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InterfazPremiun")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
